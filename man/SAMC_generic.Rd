@@ -4,9 +4,7 @@
 \alias{SAMC}
 \title{Stochastic Approximation Monte Carlo (SAMC) Sampler}
 \usage{
-SAMC(nv, energy, domain = c(-Inf, Inf), partition = seq(-100, 100,
-  length.out = 9), vecpi = rep(1/10, 10), tau = 1, niter = 20000,
-  t0 = 200, xi = 2/3, stepsize = 1, trange = c(-Inf, Inf))
+SAMC(nv, energy, options = list())
 }
 \description{
 Stochastic Approximation Monte Carlo (SAMC) Sampler

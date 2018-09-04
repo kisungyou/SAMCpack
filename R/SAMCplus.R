@@ -61,8 +61,7 @@
 #' @author Kisung You
 #' @rdname SAMCplus_generic
 #' @export
-SAMCplus <- function(nv,energy,domain=c(-Inf,Inf),partition=seq(-1e+2,1e+2,length.out=9),vecpi=rep(1/10,10),
-                     tau=1.0,niter=20000,t0=200,xi=2/3,stepsize=1.0,trange=c(-Inf,Inf),data=NA){
+SAMCplus <- function(nv,energy,data=NA,options=list()){
   ##-------------------------------------------------------------------
   # PREPROCESSING
   #   1. (int)     nv        : number of variables
@@ -76,6 +75,21 @@ SAMCplus <- function(nv,energy,domain=c(-Inf,Inf),partition=seq(-1e+2,1e+2,lengt
   #   8. (double)  xi       : gain factor exponent
   #   9. (double)  stepsize : normal proposal
   #  10. (vec/mat) trange   : theta space of (m-by-2)
+  if (!is.list(options)){
+    stop("* SAMCplus : 'options' must be a list.")
+  }
+  parnames = names(options)
+  if (!("domain" %in% parnames)){    domain = c(-Inf,Inf)  } else {domain=options$domain}
+  if (!("partition" %in% parnames)){ partition = seq(-1e+2,1e+2,length.out=9)} else {partition=options$partition}
+  if (!("vecpi" %in% parnames)){     vecpi=rep(1/10,10)} else {vecpi=options$vecpi}
+  if (!("tau" %in% parnames)){       tau=1.0} else {tau=options$tau}
+  if (!("niter" %in% parnames)){     niter=20000} else {niter=options$niter}
+  if (!("t0" %in% parnames)){        t0=200} else {t0=options$t0}
+  if (!("xi" %in% parnames)){        xi=2/3} else {xi=options$xi}
+  if (!("stepsize" %in% parnames)){  stepsize=1.0} else {stepsize=options$stepsize}
+  if (!("trange" %in% parnames)){    trange=c(-Inf,Inf)} else {trange=options$trange}
+  
+  
   if ((length(nv)>1)||(!is.numeric(nv))||(nv<1)||(is.infinite(nv))||(is.na(nv))){
     stop("* SAMCplus : 'nv' should be a positive integer.")
   }

@@ -4,10 +4,7 @@
 \alias{SAMCplus}
 \title{SAMC Sampler with C++}
 \usage{
-SAMCplus(nv, energy, domain = c(-Inf, Inf), partition = seq(-100, 100,
-  length.out = 9), vecpi = rep(1/10, 10), tau = 1, niter = 20000,
-  t0 = 200, xi = 2/3, stepsize = 1, trange = c(-Inf, Inf),
-  data = NA)
+SAMCplus(nv, energy, data = NA, options = list())
 }
 \description{
 SAMC Sampler with C++
