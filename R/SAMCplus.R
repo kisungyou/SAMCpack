@@ -80,6 +80,9 @@ SAMCplus <- function(nv,energy,domain=c(-Inf,Inf),partition=seq(-1e+2,1e+2,lengt
     stop("* SAMCplus : 'nv' should be a positive integer.")
   }
   nv = as.integer(nv)
+  if (is.function(energy)){
+    stop("* SAMCplus : for any R-compiled function, use SAMC instead.")
+  }
   if (is.vector(domain)){
     if ((length(domain)!=2)||(any(!is.numeric(domain)))||(any(is.na(domain)))){
       stop("* SAMCplus : 'domain' should be a vector of length 2.")
