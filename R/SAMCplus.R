@@ -48,7 +48,7 @@
 #' func_ptr2 = RcppXPtrUtils::cppXPtr(cppscript2,depends="RcppArmadillo") # as a pointer
 #' 
 #' ## Run The Code
-#' vecdata = as.vector(c(10,20))
+#' vecdata = as.vector(c(10,20)) 
 #' res2 = SAMCplus(2,func_ptr2,partition=ex_part,tau=ex_temp,stepsize=ex_step,vecpi=ex_vecpi,domain=ex_domain,niter=ex_niter,data=vecdata)
 #' select = seq(from=101,to=ex_niter,by=100) # 100 burn-in, 1/100 thinning 
 #' par(mfrow=c(1,2))
