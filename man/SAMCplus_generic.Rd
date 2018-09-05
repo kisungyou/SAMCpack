@@ -11,8 +11,8 @@ SAMC Sampler with C++
 }
 \examples{
 \dontrun{
-##### (1) Two-Dimensional Multimodal sampling
-## Define negative log-density function as CPP function
+##### Two-Dimensional Multimodal sampling
+## Step 1 : Define negative log-density function as a CPP function
 cppscript = "SEXP funcH(arma::vec x){
 double x1 = x(0);
 double x2 = x(1);
@@ -22,25 +22,25 @@ return Rcpp::wrap(val1+val2);
 }"
 func_ptr = RcppXPtrUtils::cppXPtr(cppscript,depends="RcppArmadillo") # as a pointer
 
-## Other Experimental Setting
-ex_part   = c(-Inf,seq(from=-8,to=0,by=0.2))
-m         = length(ex_part)-1
-ex_temp   = 1.0
-ex_step   = (0.25)
-ex_vecpi  = as.vector(array(1/m,c(1,m)))
-ex_domain = c(-1.1,1.1)
-ex_niter  = 200000
+## Step 2 : Prepare a setting option
+myoption = list()
+myoption$partition = c(-Inf,seq(from=-8,to=0,length.out=41))
+myoption$tau       = 1.0
+myoption$domain    = c(-1.1,1.1)
+myoption$vecpi     = as.vector(rep(1/41,41))
+myoption$niter     = 200000
+myoption$stepsize  = 0.25
 
-## Run The Code
-res = SAMCplus(2,func_ptr,partition=ex_part,tau=ex_temp,stepsize=ex_step,vecpi=ex_vecpi,domain=ex_domain,niter=ex_niter)
+## Step 3 : Run The Code
+res = SAMCplus(2,func_ptr,options=myoption)
 
-## Visualize
-select = seq(from=101,to=ex_niter,by=100) # 100 burn-in, 1/100 thinning 
+## Step 4 : Visualize
+select = seq(from=101,to=myoption$niter,by=100) # 100 burn-in, 1/100 thinning 
 par(mfrow=c(1,2))
 plot(res$samples[select,1], res$samples[select,2],xlab='x',ylab='y',main='samples')
 barplot(as.vector(res$frequency/sum(res$frequency)),
         main="visiting frequency by energy partition",
-        names.arg=ex_part[2:(m+1)], xlab="energy")
+        names.arg=myoption$partition[-1], xlab="energy")
 
 ##### (2) Use Extra Data
 ## Define negative log-density function as CPP function
@@ -58,7 +58,7 @@ func_ptr2 = RcppXPtrUtils::cppXPtr(cppscript2,depends="RcppArmadillo") # as a po
 
 ## Run The Code
 vecdata = as.vector(c(10,20)) 
-res2 = SAMCplus(2,func_ptr2,partition=ex_part,tau=ex_temp,stepsize=ex_step,vecpi=ex_vecpi,domain=ex_domain,niter=ex_niter,data=vecdata)
+res2 = SAMCplus(2,func_ptr2,data=vecdata, options=myoption)
 select = seq(from=101,to=ex_niter,by=100) # 100 burn-in, 1/100 thinning 
 par(mfrow=c(1,2))
 plot(res2$samples[select,1], res2$samples[select,2],xlab='x',ylab='y',main='samples')

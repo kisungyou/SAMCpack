@@ -119,6 +119,29 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// exec_samcfast_sexpdata
+Rcpp::List exec_samcfast_sexpdata(SEXP func_, const int nv, arma::vec& energy, arma::mat& domain, const double tau, const int niter, arma::vec& vecpi, const double t0, const double xi, const double stepsize, arma::mat& trange, arma::vec init, SEXP data);
+RcppExport SEXP _SAMCpack_exec_samcfast_sexpdata(SEXP func_SEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP tauSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP trangeSEXP, SEXP initSEXP, SEXP dataSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type func_(func_SEXP);
+    Rcpp::traits::input_parameter< const int >::type nv(nvSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type energy(energySEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type domain(domainSEXP);
+    Rcpp::traits::input_parameter< const double >::type tau(tauSEXP);
+    Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type vecpi(vecpiSEXP);
+    Rcpp::traits::input_parameter< const double >::type t0(t0SEXP);
+    Rcpp::traits::input_parameter< const double >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< const double >::type stepsize(stepsizeSEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type trange(trangeSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type init(initSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type data(dataSEXP);
+    rcpp_result_gen = Rcpp::wrap(exec_samcfast_sexpdata(func_, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init, data));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rescale_vert2
 arma::mat rescale_vert2(arma::mat A);
 RcppExport SEXP _SAMCpack_rescale_vert2(SEXP ASEXP) {
@@ -191,6 +214,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_SAMCpack_exec_samcfast_type1", (DL_FUNC) &_SAMCpack_exec_samcfast_type1, 13},
     {"_SAMCpack_exec_samcfast_type2", (DL_FUNC) &_SAMCpack_exec_samcfast_type2, 13},
     {"_SAMCpack_exec_samcfast_type3", (DL_FUNC) &_SAMCpack_exec_samcfast_type3, 13},
+    {"_SAMCpack_exec_samcfast_sexpdata", (DL_FUNC) &_SAMCpack_exec_samcfast_sexpdata, 13},
     {"_SAMCpack_rescale_vert2", (DL_FUNC) &_SAMCpack_rescale_vert2, 1},
     {"_SAMCpack_rescale_hori2", (DL_FUNC) &_SAMCpack_rescale_hori2, 1},
     {"_SAMCpack_rcpparma_hello_world", (DL_FUNC) &_SAMCpack_rcpparma_hello_world, 0},

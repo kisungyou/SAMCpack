@@ -21,6 +21,10 @@ exec_samcfast_type3 <- function(func_, nv, energy, domain, tau, niter, vecpi, t0
     .Call('_SAMCpack_exec_samcfast_type3', PACKAGE = 'SAMCpack', func_, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init, data)
 }
 
+exec_samcfast_sexpdata <- function(func_, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init, data) {
+    .Call('_SAMCpack_exec_samcfast_sexpdata', PACKAGE = 'SAMCpack', func_, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init, data)
+}
+
 rescale_vert2 <- function(A) {
     .Call('_SAMCpack_rescale_vert2', PACKAGE = 'SAMCpack', A)
 }

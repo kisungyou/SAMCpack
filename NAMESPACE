@@ -2,6 +2,8 @@
 
 export(SAMC)
 export(SAMCplus)
+export(SAMCregress)
 import(RcppXPtrUtils)
 importFrom(Rcpp,evalCpp)
+importFrom(utils,packageVersion)
 useDynLib(SAMCpack)

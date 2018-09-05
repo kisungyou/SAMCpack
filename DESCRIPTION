@@ -1,15 +1,17 @@
 Package: SAMCpack
 Type: Package
-Title: Stochastic Approximation Monte Carlo (SAMC) package
+Title: Stochastic Approximation Monte Carlo (SAMC) Sampler and Methods
 Version: 1.0
 Date: 2018-04-10
 Authors@R: c(person("Kisung", "You", role = c("aut", "cre"),
                      email = "kyou@nd.edu"),
-              person("Ick Hoon", "Jin", role = "rev", email="IckHoon.Jin.32@nd.edu"),
-              person("Faming", "Liang", role = c("inv","rev"), email = "fmliang@purdue.edu"))
+              person("Ick Hoon", "Jin", role = c("rev","aut"), email="IckHoon.Jin.32@nd.edu"),
+              person("Faming", "Liang", role = c("rev","aut"), email = "fmliang@purdue.edu"))
 Description: More about what it does (maybe more than one line)
 License: GPL (>=3)
 Encoding: UTF-8
-Imports: Rcpp, RcppXPtrUtils
+Imports: Rcpp, RcppXPtrUtils, utils
 LinkingTo: Rcpp, RcppArmadillo
 RoxygenNote: 6.1.0
+Suggests: knitr, rmarkdown, microbenchmark, pander
+VignetteBuilder: knitr

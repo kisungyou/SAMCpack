@@ -3,7 +3,7 @@
 \docType{package}
 \name{SAMCpack-package}
 \alias{SAMCpack-package}
-\title{SAMCpack}
+\title{Stochastic Approximation Monte Carlo (SAMC) Sampler and Methods}
 \description{
 The \pkg{SAMCpack}
 }
