@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.8.19)  5 SEP 2018 08:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.8.19)  5 SEP 2018 09:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/tmp/Rtmpv7y8jn/preview-4e63900829f.dir/R-versus-CPP.tex
-(/tmp/Rtmpv7y8jn/preview-4e63900829f.dir/R-versus-CPP.tex
+**/tmp/Rtmp372CxH/preview-3b054c852960.dir/R-versus-CPP.tex
+(/tmp/Rtmp372CxH/preview-3b054c852960.dir/R-versus-CPP.tex
 LaTeX2e <2017-04-15>
 Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -938,60 +938,56 @@ LaTeX Font Info:    Try loading font information for T1+lmtt on input line 134.
 (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 139.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 146.
 
 (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 139.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 146.
 
 (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 139
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 146
 .
 (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 139
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 146
 .
 (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 139.
+(Font)              <10> on input line 146.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 139.
+(Font)              <7> on input line 146.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 139.
-LaTeX Font Info:    Try loading font information for U+msa on input line 139.
+(Font)              <5> on input line 146.
+LaTeX Font Info:    Try loading font information for U+msa on input line 146.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 139.
+LaTeX Font Info:    Try loading font information for U+msb on input line 146.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 140.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 140.
 ! Missing \endgroup inserted.
 <inserted text> 
                 \endgroup 
 l.147 \begin{eqnarray}
                        
 Here is how much of TeX's memory you used:
- 12789 strings out of 492982
- 185061 string characters out of 6134896
+ 12735 strings out of 492982
+ 184327 string characters out of 6134896
  283629 words of memory out of 5000000
- 16146 multiletter control sequences out of 15000+600000
- 62106 words of font info for 70 fonts, out of 8000000 for 9000
+ 16114 multiletter control sequences out of 15000+600000
+ 40259 words of font info for 50 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 32i,8n,38p,277b,300s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 32i,3n,38p,278b,300s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 !  ==> Fatal error occurred, no output PDF file produced!

@@ -2,17 +2,17 @@
 title: "Fast Computation with XPtr"
 author: "Kisung You"
 output:
-  html_document:
+  rmarkdown::html_document:
     highlight: tango
     theme: united
     toc: yes
     toc_depth: 3
     toc_float: yes
-vignette: >
-  %\VignetteIndexEntry{Fast Computation with XPtr} 
-  \usepackage[utf8]{inputenc}
-  %\VignetteEngine{knitr::rmarkdown} 
 bibliography: bibSAMC.bib
+vignette: >
+  %\VignetteIndexEntry{Fast Computation with XPtr}       
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
 ---
 
 ```{r setup, include = FALSE}
@@ -181,7 +181,7 @@ data_list = list()
 data_list[[1]] = as.vector(c(20,10))
 data_list[[2]] = matrix(c(20,10,10,20),nrow=2)
 ```
-
+  
 In the code below, vector and matrix are sequentially extracted using integer index for a list.
 ```{r}
 cppscript_list = "SEXP funcH_list(arma::vec x, Rcpp::List datalist){

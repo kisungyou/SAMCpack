@@ -1,6 +1,6 @@
 unnamed-chunk-1	myoption
 unnamed-chunk-2	func_r
-unnamed-chunk-3	cppscript	func_ptr
+unnamed-chunk-3	cppscript	func_ptr	.Random.seed
 unnamed-chunk-4	res1	res2
 unnamed-chunk-5	select
 unnamed-chunk-6	execution
