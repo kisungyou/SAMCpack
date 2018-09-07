@@ -31,7 +31,7 @@
 #' 
 #' @author Yichen Cheng, Faming Liang, Kisung You
 #' @export
-SAMCrsa <- function(data,nsubset=300,
+SAMCrsa <- function(data,nsubset=max(ceiling(nrow(data)/5),10),
                     stepscale=200,niter=2500,warm=100){
   if ((!is.matrix(data))||(ncol(data)<3)){
     stop("* SAMCrsa : 'data' must be a matrix of at least 3 columns.")

@@ -4,8 +4,8 @@
 \alias{SAMCrsa}
 \title{A Resampling-based Stochastic Approximation Method for Analysis of Large Geostatitical data}
 \usage{
-SAMCrsa(data, nsubset = 300, stepscale = 200, niter = 2500,
-  warm = 100)
+SAMCrsa(data, nsubset = max(ceiling(nrow(data)/5), 10),
+  stepscale = 200, niter = 2500, warm = 100)
 }
 \arguments{
 \item{data}{an \eqn{(n\times p)} matrix. The first two columns of the data are 
