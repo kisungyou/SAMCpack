@@ -58,6 +58,9 @@
 #'         names.arg=ex_part[2:(m+1)], xlab="energy")
 #' }
 #' 
+#' @references 
+#' \insertRef{SAMC}{SAMCpack}
+#' 
 #' @author Kisung You
 #' @export
 SAMCPLUS <- function(nv,energy,data=NA,options=list()){

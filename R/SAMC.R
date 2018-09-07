@@ -33,6 +33,9 @@
 #'         names.arg=myoption$partition[-1], xlab="energy")
 #' }
 #' 
+#' @references 
+#' \insertRef{SAMC}{SAMCpack}
+#' 
 #' @author Kisung You
 #' @export
 SAMC <- function(nv,energy,options=list()){

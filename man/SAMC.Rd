@@ -42,6 +42,9 @@ barplot(as.vector(res$frequency/sum(res$frequency)),
 }
 
 }
+\references{
+\insertRef{SAMC}{SAMCpack}
+}
 \author{
 Kisung You
 }
