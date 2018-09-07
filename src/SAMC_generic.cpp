@@ -11,29 +11,32 @@ using namespace arma;
 template <typename T>
 List core_samc_density(T func,const int nv, arma::vec& energy, arma::mat& domain, const double tau,
                        const int niter, arma::vec& vecpi, const double t0, const double xi,
-                       const double stepsize, arma::mat& trange, arma::vec& init) {
+                       arma::vec stepsize, arma::mat& trange, arma::vec& init) {
   // 1-1. setting
   arma::mat samples(niter,nv,fill::zeros); // (n-by-p) convention
   const int m = vecpi.n_elem;              // number of energy domains
   arma::vec visits(m,fill::zeros);         // visiting frequency
   arma::vec thetas(m,fill::zeros);         // weights to be undated
-  
-  // 1-2. variable settings
+
+    // 1-2. variable settings
   arma::vec xold = init;
   double Hy,Hxold;   // energy
   int    Jy,Jxold;   // location
   double ttxold,tty; // according theta values
   double r;          // acceptance
-  
+
   // 1-3. xold-related computations
   Hxold  = sum(as<NumericVector>(func(xold))); // need to wrap it for the pointer part.
+  if ((Hxold < energy.min())||(Hxold > energy.max())){
+    stop("* SAMC backend : Hxold is not within the partition range.");
+  }
   Jxold  = find_location(Hxold,energy);
   ttxold = thetas(Jxold);
-  
+
   // 1-4. main iteration
   for (int i=0;i<niter;i++){
     // A-1. sample generation
-    arma::vec y = sampling_rw(xold,domain,stepsize);
+    arma::vec y = sampling_rwvec(xold,domain,stepsize);
     // A-2. compute ratio
     Hy  = sum(as<NumericVector>(func(y)));
     Jy  = find_location(Hy,energy);
@@ -51,7 +54,6 @@ List core_samc_density(T func,const int nv, arma::vec& energy, arma::mat& domain
       samples.row(i) = xold.t();
       visits(Jxold) += 1;
     }
-    
     // B-1. temporary update
     arma:vec thalf(m,fill::zeros);
     double gfactor = t0/(std::max(t0,pow((double)(i),xi)));
@@ -63,7 +65,6 @@ List core_samc_density(T func,const int nv, arma::vec& energy, arma::mat& domain
     for (int j=0;j<m;j++){
       thalf(j) = thetas(j) + gfactor*(Ijxold(j)-vecpi(j));
     }
-    
     // B-2. Accept the update of weights or not
     if ((all(thalf<=trange.col(1)))&&(all(trange.col(0)<=thalf))){
       thetas = thalf;
@@ -71,7 +72,7 @@ List core_samc_density(T func,const int nv, arma::vec& energy, arma::mat& domain
       thetas = adjust_weights(thalf,trange);
     }
   }
-  
+
   // 1-5. return output
   Rcpp::List output;
   output["samples"] = samples;
@@ -85,7 +86,7 @@ List core_samc_density(T func,const int nv, arma::vec& energy, arma::mat& domain
 // Export Functions
 // [[Rcpp::export]]
 Rcpp::List exec_SAMC(Function func, const int nv, arma::vec& energy, arma::mat& domain, const double tau,
-                               const int niter, arma::vec& vecpi, const double t0, const double xi, const double stepsize,
+                               const int niter, arma::vec& vecpi, const double t0, const double xi, arma::vec stepsize,
                                arma::mat& trange,  arma::vec& init){
   return core_samc_density<Function>(func,nv,energy,domain,tau,niter,vecpi,t0,xi,stepsize,trange,init);
 }

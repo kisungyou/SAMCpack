@@ -17,7 +17,7 @@ using namespace arma;
 template <typename T>
 List core_samcfast_type0(T func,const int nv, arma::vec& energy, arma::mat& domain, const double tau,
                          const int niter, arma::vec& vecpi, const double t0, const double xi,
-                         const double stepsize, arma::mat& trange, arma::vec& init) {
+                         arma::vec stepsize, arma::mat& trange, arma::vec& init) {
   // 2-1. setting
   arma::mat samples(niter,nv,fill::zeros); // (n-by-p) convention
   const int m = vecpi.n_elem;              // number of energy domains
@@ -39,7 +39,7 @@ List core_samcfast_type0(T func,const int nv, arma::vec& energy, arma::mat& doma
   // 2-4. main iteration
   for (int i=0;i<niter;i++){
     // A-1. sample generation
-    arma::vec y = sampling_rw(xold,domain,stepsize);
+    arma::vec y = sampling_rwvec(xold,domain,stepsize);
     // A-2. compute ratio
     Hy  = sum(as<NumericVector>(func(y)));
     Jy  = find_location(Hy,energy);
@@ -91,7 +91,7 @@ List core_samcfast_type0(T func,const int nv, arma::vec& energy, arma::mat& doma
 template <typename T>
 List core_samcfast_type1(T func,const int nv, arma::vec& energy, arma::mat& domain, const double tau,
                          const int niter, arma::vec& vecpi, const double t0, const double xi,
-                         const double stepsize, arma::mat& trange, arma::vec& init, arma::vec data) {
+                         arma::vec stepsize, arma::mat& trange, arma::vec& init, arma::vec data) {
   // 2-1. setting
   arma::mat samples(niter,nv,fill::zeros); // (n-by-p) convention
   const int m = vecpi.n_elem;              // number of energy domains
@@ -113,7 +113,7 @@ List core_samcfast_type1(T func,const int nv, arma::vec& energy, arma::mat& doma
   // 2-4. main iteration
   for (int i=0;i<niter;i++){
     // A-1. sample generation
-    arma::vec y = sampling_rw(xold,domain,stepsize);
+    arma::vec y = sampling_rwvec(xold,domain,stepsize);
     // A-2. compute ratio
     Hy  = sum(as<NumericVector>(func(y,data)));
     Jy  = find_location(Hy,energy);
@@ -165,7 +165,7 @@ List core_samcfast_type1(T func,const int nv, arma::vec& energy, arma::mat& doma
 template <typename T>
 List core_samcfast_type2(T func,const int nv, arma::vec& energy, arma::mat& domain, const double tau,
                          const int niter, arma::vec& vecpi, const double t0, const double xi,
-                         const double stepsize, arma::mat& trange, arma::vec& init, arma::mat data) {
+                         arma::vec stepsize, arma::mat& trange, arma::vec& init, arma::mat data) {
   // 2-1. setting
   arma::mat samples(niter,nv,fill::zeros); // (n-by-p) convention
   const int m = vecpi.n_elem;              // number of energy domains
@@ -187,7 +187,7 @@ List core_samcfast_type2(T func,const int nv, arma::vec& energy, arma::mat& doma
   // 2-4. main iteration
   for (int i=0;i<niter;i++){
     // A-1. sample generation
-    arma::vec y = sampling_rw(xold,domain,stepsize);
+    arma::vec y = sampling_rwvec(xold,domain,stepsize);
     // A-2. compute ratio
     Hy  = sum(as<NumericVector>(func(y,data)));
     Jy  = find_location(Hy,energy);
@@ -239,7 +239,7 @@ List core_samcfast_type2(T func,const int nv, arma::vec& energy, arma::mat& doma
 template <typename T>
 List core_samcfast_type3(T func,const int nv, arma::vec& energy, arma::mat& domain, const double tau,
                          const int niter, arma::vec& vecpi, const double t0, const double xi,
-                         const double stepsize, arma::mat& trange, arma::vec& init, Rcpp::List data) {
+                         arma::vec stepsize, arma::mat& trange, arma::vec& init, Rcpp::List data) {
   // 2-1. setting
   arma::mat samples(niter,nv,fill::zeros); // (n-by-p) convention
   const int m = vecpi.n_elem;              // number of energy domains
@@ -261,7 +261,7 @@ List core_samcfast_type3(T func,const int nv, arma::vec& energy, arma::mat& doma
   // 2-4. main iteration
   for (int i=0;i<niter;i++){
     // A-1. sample generation
-    arma::vec y = sampling_rw(xold,domain,stepsize);
+    arma::vec y = sampling_rwvec(xold,domain,stepsize);
     // A-2. compute ratio
     Hy  = sum(as<NumericVector>(func(y,data)));
     Jy  = find_location(Hy,energy);
@@ -316,7 +316,7 @@ List core_samcfast_type3(T func,const int nv, arma::vec& energy, arma::mat& doma
 template <typename T>
 List core_samcfast_sexpdata(T func,const int nv, arma::vec& energy, arma::mat& domain, const double tau,
                          const int niter, arma::vec& vecpi, const double t0, const double xi,
-                         const double stepsize, arma::mat& trange, arma::vec& init, SEXP data) {
+                         arma::vec stepsize, arma::mat& trange, arma::vec& init, SEXP data) {
   // 2-1. setting
   arma::mat samples(niter,nv,fill::zeros); // (n-by-p) convention
   const int m = vecpi.n_elem;              // number of energy domains
@@ -338,7 +338,7 @@ List core_samcfast_sexpdata(T func,const int nv, arma::vec& energy, arma::mat& d
   // 2-4. main iteration
   for (int i=0;i<niter;i++){
     // A-1. sample generation
-    arma::vec y = sampling_rw(xold,domain,stepsize);
+    arma::vec y = sampling_rwvec(xold,domain,stepsize);
     // A-2. compute ratio
     Hy  = sum(as<NumericVector>(func(y,data)));
     Jy  = find_location(Hy,energy);
@@ -397,35 +397,35 @@ typedef SEXP (*ptrsexpdata)(arma::vec, SEXP);
 
 // [[Rcpp::export]]
 Rcpp::List exec_samcfast_type0(SEXP func_, const int nv, arma::vec& energy, arma::mat& domain, const double tau,
-                                   const int niter, arma::vec& vecpi, const double t0, const double xi, const double stepsize,
+                                   const int niter, arma::vec& vecpi, const double t0, const double xi, arma::vec stepsize,
                                    arma::mat& trange,  arma::vec init){
   ptrtype0 func = *XPtr<ptrtype0>(func_);
   return core_samcfast_type0<ptrtype0>(func,nv,energy,domain,tau,niter,vecpi,t0,xi,stepsize,trange,init);
 }
 // [[Rcpp::export]]
 Rcpp::List exec_samcfast_type1(SEXP func_, const int nv, arma::vec& energy, arma::mat& domain, const double tau,
-                               const int niter, arma::vec& vecpi, const double t0, const double xi, const double stepsize,
+                               const int niter, arma::vec& vecpi, const double t0, const double xi, arma::vec stepsize,
                                arma::mat& trange,  arma::vec init, arma::vec data){
   ptrtype1 func = *XPtr<ptrtype1>(func_);
   return core_samcfast_type1<ptrtype1>(func,nv,energy,domain,tau,niter,vecpi,t0,xi,stepsize,trange,init,data);
 }
 // [[Rcpp::export]]
 Rcpp::List exec_samcfast_type2(SEXP func_, const int nv, arma::vec& energy, arma::mat& domain, const double tau,
-                               const int niter, arma::vec& vecpi, const double t0, const double xi, const double stepsize,
+                               const int niter, arma::vec& vecpi, const double t0, const double xi, arma::vec stepsize,
                                arma::mat& trange,  arma::vec init, arma::mat data){
   ptrtype2 func = *XPtr<ptrtype2>(func_);
   return core_samcfast_type2<ptrtype2>(func,nv,energy,domain,tau,niter,vecpi,t0,xi,stepsize,trange,init,data);
 }
 // [[Rcpp::export]]
 Rcpp::List exec_samcfast_type3(SEXP func_, const int nv, arma::vec& energy, arma::mat& domain, const double tau,
-                               const int niter, arma::vec& vecpi, const double t0, const double xi, const double stepsize,
+                               const int niter, arma::vec& vecpi, const double t0, const double xi, arma::vec stepsize,
                                arma::mat& trange,  arma::vec init, Rcpp::List data){
   ptrtype3 func = *XPtr<ptrtype3>(func_);
   return core_samcfast_type3<ptrtype3>(func,nv,energy,domain,tau,niter,vecpi,t0,xi,stepsize,trange,init,data);
 }
 // [[Rcpp::export]]
 Rcpp::List exec_samcfast_sexpdata(SEXP func_, const int nv, arma::vec& energy, arma::mat& domain, const double tau,
-                               const int niter, arma::vec& vecpi, const double t0, const double xi, const double stepsize,
+                               const int niter, arma::vec& vecpi, const double t0, const double xi, arma::vec stepsize,
                                arma::mat& trange,  arma::vec init, SEXP data){
   ptrsexpdata func = *XPtr<ptrsexpdata>(func_);
   return core_samcfast_sexpdata<ptrsexpdata>(func,nv,energy,domain,tau,niter,vecpi,t0,xi,stepsize,trange,init,data);

@@ -1,0 +1,28 @@
+#' Dataset for SAMCrsa
+#' 
+#' Simulated date matrix with response variable distributed with 'powered exponential' covariance matrix, 
+#' with \eqn{\phi=25, \tau=1, \kappa=1, \sigma=1}.
+#'
+#' @usage 
+#' data(gdata)
+#' 
+#' @format 
+#' A sample dataset with 1000 rows and 4 columns, where each row represents a single observation. 
+#' The first two columns provide the 2D location for each obsevation. The third column of the matrix gives the response value. 
+#' Covariate is included in Column 4. This is the default form for the variable \code{data} in function \code{\link{SAMCrsa}}.
+#' 
+#' @details 
+#' Below is the code used to generate \emph{gdata}:
+#' \preformatted{
+#' require("geoR")
+#' require("RandomFields")
+#' DataNum=1000
+#' gData=grf(DataNum,grid="irreg",DataNum,DataNum,xlims=c(0,100),ylims=c(0,100),nsim=1,mean=0,
+#'           cov.mode="powered.exponential",cov.par=c(1,25),nugget=1,kappa=1)
+#' l=gData$coords
+#' y=gData$data
+#' x=rnorm(DataNum)
+#' y2=y+.5+x
+#' gdata=cbind(l,y2,x)
+#' }
+"gdata"

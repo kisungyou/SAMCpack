@@ -5,9 +5,11 @@
 #' @docType package
 #' @name SAMCpack-package
 #' @import RcppXPtrUtils
+#' @import Rdpack
+#' @importFrom stats runif
 #' @importFrom utils packageVersion
 #' @importFrom Rcpp evalCpp
-#' @useDynLib SAMCpack
+#' @useDynLib SAMCpack, .registration=TRUE
 NULL
 
 

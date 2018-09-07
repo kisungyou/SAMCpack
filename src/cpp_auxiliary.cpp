@@ -19,6 +19,24 @@ arma::vec sampling_rw(arma::vec xold, arma::mat domain, const double stepsize){
     return(xold);
   }
 }
+arma::vec sampling_rwvec(arma::vec xold, arma::mat domain, arma::vec stepsize){
+  // 1-1. checker
+  const int n = xold.n_elem;
+  arma::vec xnew(n,fill::zeros);
+  arma::vec randomness(n,fill::randn);
+  
+  // 1-2. apply random walk
+  for (int i=0;i<n;i++){
+    xnew(i) = xold(i) + stepsize(i)*randomness(i);
+  }
+  if ((all(xnew<=domain.col(1)))&&(all(domain.col(0)<=xnew))){
+    return(xnew);
+  } else{
+    return(xold);
+  }
+}
+
+
 
 // Auxiliary 2 : find a suitable location for energy vector
 int find_location(double x, arma::vec y){

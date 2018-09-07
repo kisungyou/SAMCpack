@@ -6,142 +6,6 @@
 
 using namespace Rcpp;
 
-// exec_SAMC
-Rcpp::List exec_SAMC(Function func, const int nv, arma::vec& energy, arma::mat& domain, const double tau, const int niter, arma::vec& vecpi, const double t0, const double xi, const double stepsize, arma::mat& trange, arma::vec& init);
-RcppExport SEXP _SAMCpack_exec_SAMC(SEXP funcSEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP tauSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP trangeSEXP, SEXP initSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Function >::type func(funcSEXP);
-    Rcpp::traits::input_parameter< const int >::type nv(nvSEXP);
-    Rcpp::traits::input_parameter< arma::vec& >::type energy(energySEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type domain(domainSEXP);
-    Rcpp::traits::input_parameter< const double >::type tau(tauSEXP);
-    Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
-    Rcpp::traits::input_parameter< arma::vec& >::type vecpi(vecpiSEXP);
-    Rcpp::traits::input_parameter< const double >::type t0(t0SEXP);
-    Rcpp::traits::input_parameter< const double >::type xi(xiSEXP);
-    Rcpp::traits::input_parameter< const double >::type stepsize(stepsizeSEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type trange(trangeSEXP);
-    Rcpp::traits::input_parameter< arma::vec& >::type init(initSEXP);
-    rcpp_result_gen = Rcpp::wrap(exec_SAMC(func, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init));
-    return rcpp_result_gen;
-END_RCPP
-}
-// exec_samcfast_type0
-Rcpp::List exec_samcfast_type0(SEXP func_, const int nv, arma::vec& energy, arma::mat& domain, const double tau, const int niter, arma::vec& vecpi, const double t0, const double xi, const double stepsize, arma::mat& trange, arma::vec init);
-RcppExport SEXP _SAMCpack_exec_samcfast_type0(SEXP func_SEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP tauSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP trangeSEXP, SEXP initSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< SEXP >::type func_(func_SEXP);
-    Rcpp::traits::input_parameter< const int >::type nv(nvSEXP);
-    Rcpp::traits::input_parameter< arma::vec& >::type energy(energySEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type domain(domainSEXP);
-    Rcpp::traits::input_parameter< const double >::type tau(tauSEXP);
-    Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
-    Rcpp::traits::input_parameter< arma::vec& >::type vecpi(vecpiSEXP);
-    Rcpp::traits::input_parameter< const double >::type t0(t0SEXP);
-    Rcpp::traits::input_parameter< const double >::type xi(xiSEXP);
-    Rcpp::traits::input_parameter< const double >::type stepsize(stepsizeSEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type trange(trangeSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type init(initSEXP);
-    rcpp_result_gen = Rcpp::wrap(exec_samcfast_type0(func_, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init));
-    return rcpp_result_gen;
-END_RCPP
-}
-// exec_samcfast_type1
-Rcpp::List exec_samcfast_type1(SEXP func_, const int nv, arma::vec& energy, arma::mat& domain, const double tau, const int niter, arma::vec& vecpi, const double t0, const double xi, const double stepsize, arma::mat& trange, arma::vec init, arma::vec data);
-RcppExport SEXP _SAMCpack_exec_samcfast_type1(SEXP func_SEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP tauSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP trangeSEXP, SEXP initSEXP, SEXP dataSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< SEXP >::type func_(func_SEXP);
-    Rcpp::traits::input_parameter< const int >::type nv(nvSEXP);
-    Rcpp::traits::input_parameter< arma::vec& >::type energy(energySEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type domain(domainSEXP);
-    Rcpp::traits::input_parameter< const double >::type tau(tauSEXP);
-    Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
-    Rcpp::traits::input_parameter< arma::vec& >::type vecpi(vecpiSEXP);
-    Rcpp::traits::input_parameter< const double >::type t0(t0SEXP);
-    Rcpp::traits::input_parameter< const double >::type xi(xiSEXP);
-    Rcpp::traits::input_parameter< const double >::type stepsize(stepsizeSEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type trange(trangeSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type init(initSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type data(dataSEXP);
-    rcpp_result_gen = Rcpp::wrap(exec_samcfast_type1(func_, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init, data));
-    return rcpp_result_gen;
-END_RCPP
-}
-// exec_samcfast_type2
-Rcpp::List exec_samcfast_type2(SEXP func_, const int nv, arma::vec& energy, arma::mat& domain, const double tau, const int niter, arma::vec& vecpi, const double t0, const double xi, const double stepsize, arma::mat& trange, arma::vec init, arma::mat data);
-RcppExport SEXP _SAMCpack_exec_samcfast_type2(SEXP func_SEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP tauSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP trangeSEXP, SEXP initSEXP, SEXP dataSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< SEXP >::type func_(func_SEXP);
-    Rcpp::traits::input_parameter< const int >::type nv(nvSEXP);
-    Rcpp::traits::input_parameter< arma::vec& >::type energy(energySEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type domain(domainSEXP);
-    Rcpp::traits::input_parameter< const double >::type tau(tauSEXP);
-    Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
-    Rcpp::traits::input_parameter< arma::vec& >::type vecpi(vecpiSEXP);
-    Rcpp::traits::input_parameter< const double >::type t0(t0SEXP);
-    Rcpp::traits::input_parameter< const double >::type xi(xiSEXP);
-    Rcpp::traits::input_parameter< const double >::type stepsize(stepsizeSEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type trange(trangeSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type init(initSEXP);
-    Rcpp::traits::input_parameter< arma::mat >::type data(dataSEXP);
-    rcpp_result_gen = Rcpp::wrap(exec_samcfast_type2(func_, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init, data));
-    return rcpp_result_gen;
-END_RCPP
-}
-// exec_samcfast_type3
-Rcpp::List exec_samcfast_type3(SEXP func_, const int nv, arma::vec& energy, arma::mat& domain, const double tau, const int niter, arma::vec& vecpi, const double t0, const double xi, const double stepsize, arma::mat& trange, arma::vec init, Rcpp::List data);
-RcppExport SEXP _SAMCpack_exec_samcfast_type3(SEXP func_SEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP tauSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP trangeSEXP, SEXP initSEXP, SEXP dataSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< SEXP >::type func_(func_SEXP);
-    Rcpp::traits::input_parameter< const int >::type nv(nvSEXP);
-    Rcpp::traits::input_parameter< arma::vec& >::type energy(energySEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type domain(domainSEXP);
-    Rcpp::traits::input_parameter< const double >::type tau(tauSEXP);
-    Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
-    Rcpp::traits::input_parameter< arma::vec& >::type vecpi(vecpiSEXP);
-    Rcpp::traits::input_parameter< const double >::type t0(t0SEXP);
-    Rcpp::traits::input_parameter< const double >::type xi(xiSEXP);
-    Rcpp::traits::input_parameter< const double >::type stepsize(stepsizeSEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type trange(trangeSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type init(initSEXP);
-    Rcpp::traits::input_parameter< Rcpp::List >::type data(dataSEXP);
-    rcpp_result_gen = Rcpp::wrap(exec_samcfast_type3(func_, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init, data));
-    return rcpp_result_gen;
-END_RCPP
-}
-// exec_samcfast_sexpdata
-Rcpp::List exec_samcfast_sexpdata(SEXP func_, const int nv, arma::vec& energy, arma::mat& domain, const double tau, const int niter, arma::vec& vecpi, const double t0, const double xi, const double stepsize, arma::mat& trange, arma::vec init, SEXP data);
-RcppExport SEXP _SAMCpack_exec_samcfast_sexpdata(SEXP func_SEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP tauSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP trangeSEXP, SEXP initSEXP, SEXP dataSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< SEXP >::type func_(func_SEXP);
-    Rcpp::traits::input_parameter< const int >::type nv(nvSEXP);
-    Rcpp::traits::input_parameter< arma::vec& >::type energy(energySEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type domain(domainSEXP);
-    Rcpp::traits::input_parameter< const double >::type tau(tauSEXP);
-    Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
-    Rcpp::traits::input_parameter< arma::vec& >::type vecpi(vecpiSEXP);
-    Rcpp::traits::input_parameter< const double >::type t0(t0SEXP);
-    Rcpp::traits::input_parameter< const double >::type xi(xiSEXP);
-    Rcpp::traits::input_parameter< const double >::type stepsize(stepsizeSEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type trange(trangeSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type init(initSEXP);
-    Rcpp::traits::input_parameter< SEXP >::type data(dataSEXP);
-    rcpp_result_gen = Rcpp::wrap(exec_samcfast_sexpdata(func_, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init, data));
-    return rcpp_result_gen;
-END_RCPP
-}
 // rescale_vert2
 arma::mat rescale_vert2(arma::mat A);
 RcppExport SEXP _SAMCpack_rescale_vert2(SEXP ASEXP) {
@@ -164,67 +28,139 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rcpparma_hello_world
-arma::mat rcpparma_hello_world();
-RcppExport SEXP _SAMCpack_rcpparma_hello_world() {
+// exec_SAMC
+Rcpp::List exec_SAMC(Function func, const int nv, arma::vec& energy, arma::mat& domain, const double tau, const int niter, arma::vec& vecpi, const double t0, const double xi, arma::vec stepsize, arma::mat& trange, arma::vec& init);
+RcppExport SEXP _SAMCpack_exec_SAMC(SEXP funcSEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP tauSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP trangeSEXP, SEXP initSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(rcpparma_hello_world());
+    Rcpp::traits::input_parameter< Function >::type func(funcSEXP);
+    Rcpp::traits::input_parameter< const int >::type nv(nvSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type energy(energySEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type domain(domainSEXP);
+    Rcpp::traits::input_parameter< const double >::type tau(tauSEXP);
+    Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type vecpi(vecpiSEXP);
+    Rcpp::traits::input_parameter< const double >::type t0(t0SEXP);
+    Rcpp::traits::input_parameter< const double >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type stepsize(stepsizeSEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type trange(trangeSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type init(initSEXP);
+    rcpp_result_gen = Rcpp::wrap(exec_SAMC(func, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init));
     return rcpp_result_gen;
 END_RCPP
 }
-// rcpparma_outerproduct
-arma::mat rcpparma_outerproduct(const arma::colvec& x);
-RcppExport SEXP _SAMCpack_rcpparma_outerproduct(SEXP xSEXP) {
+// exec_samcfast_type0
+Rcpp::List exec_samcfast_type0(SEXP func_, const int nv, arma::vec& energy, arma::mat& domain, const double tau, const int niter, arma::vec& vecpi, const double t0, const double xi, arma::vec stepsize, arma::mat& trange, arma::vec init);
+RcppExport SEXP _SAMCpack_exec_samcfast_type0(SEXP func_SEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP tauSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP trangeSEXP, SEXP initSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::colvec& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpparma_outerproduct(x));
+    Rcpp::traits::input_parameter< SEXP >::type func_(func_SEXP);
+    Rcpp::traits::input_parameter< const int >::type nv(nvSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type energy(energySEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type domain(domainSEXP);
+    Rcpp::traits::input_parameter< const double >::type tau(tauSEXP);
+    Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type vecpi(vecpiSEXP);
+    Rcpp::traits::input_parameter< const double >::type t0(t0SEXP);
+    Rcpp::traits::input_parameter< const double >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type stepsize(stepsizeSEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type trange(trangeSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type init(initSEXP);
+    rcpp_result_gen = Rcpp::wrap(exec_samcfast_type0(func_, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init));
     return rcpp_result_gen;
 END_RCPP
 }
-// rcpparma_innerproduct
-double rcpparma_innerproduct(const arma::colvec& x);
-RcppExport SEXP _SAMCpack_rcpparma_innerproduct(SEXP xSEXP) {
+// exec_samcfast_type1
+Rcpp::List exec_samcfast_type1(SEXP func_, const int nv, arma::vec& energy, arma::mat& domain, const double tau, const int niter, arma::vec& vecpi, const double t0, const double xi, arma::vec stepsize, arma::mat& trange, arma::vec init, arma::vec data);
+RcppExport SEXP _SAMCpack_exec_samcfast_type1(SEXP func_SEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP tauSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP trangeSEXP, SEXP initSEXP, SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::colvec& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpparma_innerproduct(x));
+    Rcpp::traits::input_parameter< SEXP >::type func_(func_SEXP);
+    Rcpp::traits::input_parameter< const int >::type nv(nvSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type energy(energySEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type domain(domainSEXP);
+    Rcpp::traits::input_parameter< const double >::type tau(tauSEXP);
+    Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type vecpi(vecpiSEXP);
+    Rcpp::traits::input_parameter< const double >::type t0(t0SEXP);
+    Rcpp::traits::input_parameter< const double >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type stepsize(stepsizeSEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type trange(trangeSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type init(initSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type data(dataSEXP);
+    rcpp_result_gen = Rcpp::wrap(exec_samcfast_type1(func_, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init, data));
     return rcpp_result_gen;
 END_RCPP
 }
-// rcpparma_bothproducts
-Rcpp::List rcpparma_bothproducts(const arma::colvec& x);
-RcppExport SEXP _SAMCpack_rcpparma_bothproducts(SEXP xSEXP) {
+// exec_samcfast_type2
+Rcpp::List exec_samcfast_type2(SEXP func_, const int nv, arma::vec& energy, arma::mat& domain, const double tau, const int niter, arma::vec& vecpi, const double t0, const double xi, arma::vec stepsize, arma::mat& trange, arma::vec init, arma::mat data);
+RcppExport SEXP _SAMCpack_exec_samcfast_type2(SEXP func_SEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP tauSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP trangeSEXP, SEXP initSEXP, SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::colvec& >::type x(xSEXP);
-    rcpp_result_gen = Rcpp::wrap(rcpparma_bothproducts(x));
+    Rcpp::traits::input_parameter< SEXP >::type func_(func_SEXP);
+    Rcpp::traits::input_parameter< const int >::type nv(nvSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type energy(energySEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type domain(domainSEXP);
+    Rcpp::traits::input_parameter< const double >::type tau(tauSEXP);
+    Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type vecpi(vecpiSEXP);
+    Rcpp::traits::input_parameter< const double >::type t0(t0SEXP);
+    Rcpp::traits::input_parameter< const double >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type stepsize(stepsizeSEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type trange(trangeSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type init(initSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type data(dataSEXP);
+    rcpp_result_gen = Rcpp::wrap(exec_samcfast_type2(func_, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init, data));
     return rcpp_result_gen;
 END_RCPP
 }
-
-static const R_CallMethodDef CallEntries[] = {
-    {"_SAMCpack_exec_SAMC", (DL_FUNC) &_SAMCpack_exec_SAMC, 12},
-    {"_SAMCpack_exec_samcfast_type0", (DL_FUNC) &_SAMCpack_exec_samcfast_type0, 12},
-    {"_SAMCpack_exec_samcfast_type1", (DL_FUNC) &_SAMCpack_exec_samcfast_type1, 13},
-    {"_SAMCpack_exec_samcfast_type2", (DL_FUNC) &_SAMCpack_exec_samcfast_type2, 13},
-    {"_SAMCpack_exec_samcfast_type3", (DL_FUNC) &_SAMCpack_exec_samcfast_type3, 13},
-    {"_SAMCpack_exec_samcfast_sexpdata", (DL_FUNC) &_SAMCpack_exec_samcfast_sexpdata, 13},
-    {"_SAMCpack_rescale_vert2", (DL_FUNC) &_SAMCpack_rescale_vert2, 1},
-    {"_SAMCpack_rescale_hori2", (DL_FUNC) &_SAMCpack_rescale_hori2, 1},
-    {"_SAMCpack_rcpparma_hello_world", (DL_FUNC) &_SAMCpack_rcpparma_hello_world, 0},
-    {"_SAMCpack_rcpparma_outerproduct", (DL_FUNC) &_SAMCpack_rcpparma_outerproduct, 1},
-    {"_SAMCpack_rcpparma_innerproduct", (DL_FUNC) &_SAMCpack_rcpparma_innerproduct, 1},
-    {"_SAMCpack_rcpparma_bothproducts", (DL_FUNC) &_SAMCpack_rcpparma_bothproducts, 1},
-    {NULL, NULL, 0}
-};
-
-RcppExport void R_init_SAMCpack(DllInfo *dll) {
-    R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
-    R_useDynamicSymbols(dll, FALSE);
+// exec_samcfast_type3
+Rcpp::List exec_samcfast_type3(SEXP func_, const int nv, arma::vec& energy, arma::mat& domain, const double tau, const int niter, arma::vec& vecpi, const double t0, const double xi, arma::vec stepsize, arma::mat& trange, arma::vec init, Rcpp::List data);
+RcppExport SEXP _SAMCpack_exec_samcfast_type3(SEXP func_SEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP tauSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP trangeSEXP, SEXP initSEXP, SEXP dataSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type func_(func_SEXP);
+    Rcpp::traits::input_parameter< const int >::type nv(nvSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type energy(energySEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type domain(domainSEXP);
+    Rcpp::traits::input_parameter< const double >::type tau(tauSEXP);
+    Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type vecpi(vecpiSEXP);
+    Rcpp::traits::input_parameter< const double >::type t0(t0SEXP);
+    Rcpp::traits::input_parameter< const double >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type stepsize(stepsizeSEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type trange(trangeSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type init(initSEXP);
+    Rcpp::traits::input_parameter< Rcpp::List >::type data(dataSEXP);
+    rcpp_result_gen = Rcpp::wrap(exec_samcfast_type3(func_, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init, data));
+    return rcpp_result_gen;
+END_RCPP
+}
+// exec_samcfast_sexpdata
+Rcpp::List exec_samcfast_sexpdata(SEXP func_, const int nv, arma::vec& energy, arma::mat& domain, const double tau, const int niter, arma::vec& vecpi, const double t0, const double xi, arma::vec stepsize, arma::mat& trange, arma::vec init, SEXP data);
+RcppExport SEXP _SAMCpack_exec_samcfast_sexpdata(SEXP func_SEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP tauSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP trangeSEXP, SEXP initSEXP, SEXP dataSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type func_(func_SEXP);
+    Rcpp::traits::input_parameter< const int >::type nv(nvSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type energy(energySEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type domain(domainSEXP);
+    Rcpp::traits::input_parameter< const double >::type tau(tauSEXP);
+    Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type vecpi(vecpiSEXP);
+    Rcpp::traits::input_parameter< const double >::type t0(t0SEXP);
+    Rcpp::traits::input_parameter< const double >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type stepsize(stepsizeSEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type trange(trangeSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type init(initSEXP);
+    Rcpp::traits::input_parameter< SEXP >::type data(dataSEXP);
+    rcpp_result_gen = Rcpp::wrap(exec_samcfast_sexpdata(func_, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init, data));
+    return rcpp_result_gen;
+END_RCPP
 }
