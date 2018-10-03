@@ -4,13 +4,15 @@
 \alias{SAMCrsa}
 \title{A Resampling-based Stochastic Approximation Method for Analysis of Large Geostatitical data}
 \usage{
-SAMCrsa(data, nsubset = max(ceiling(nrow(data)/5), 10),
+SAMCrsa(coords, y, X = NULL, nsubset = max(ceiling(length(y)/5), 10),
   stepscale = 200, niter = 2500, warm = 100)
 }
 \arguments{
-\item{data}{an \eqn{(n\times p)} matrix. The first two columns of the data are 
-2D location coordinates (\eqn{x_1, x_2}) for each observation. The third column gives the 
-response value (\eqn{y}). Extra covariates can be included from the 4th column and beyond.}
+\item{coords}{an \eqn{(n\times 2)} matrix. 2D location coordinates.}
+
+\item{y}{a length-\eqn{n} vector of response value.}
+
+\item{X}{an \eqn{(n\times k)} matrix of extra covariates.}
 
 \item{nsubset}{the size of the subset drawn from the data. It is recommended to be set to 300 or higher.}
 
@@ -34,11 +36,11 @@ It is a stochatic approximation method. At every iteration, only a subset of the
 The data are assumed to have a powered exponential correlation structure.
 }
 \examples{
-## Load Data
+##### load example data pre-loaded
 data(gdata)
 
-## Run RSA
-SAMCrsa(gdata, nsubset=50, stepscale=40, niter=100, warm=20)
+##### run RSA
+output = SAMCrsa(gdata$coords, gdata$y, gdata$X, nsubset=50, stepscale=40, niter=100, warm=20)
 
 }
 \references{

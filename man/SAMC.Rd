@@ -6,8 +6,35 @@
 \usage{
 SAMC(nv, energy, options = list())
 }
+\arguments{
+\item{nv}{number of variables.}
+
+\item{energy}{an \code{R} function for negative log density.}
+
+\item{options}{a list specifying parameters/options for SAMC algorithm. Below, vector(\eqn{k}) means a vector of length \eqn{k}, and matrix likewise.
+\tabular{lll}{
+PARAMETER        \tab SPECIFICATION \tab DESCRIPTION \cr
+\code{domain}    \tab vector(\eqn{2}) or matrix(\eqn{(nv\times 2)}) \tab domain of sample space \cr
+\code{partition} \tab vector(\eqn{m}) \tab energy partition \cr
+\code{vecpi}     \tab vector(\eqn{m-1}) \tab desired sampling distribution \cr
+\code{tau}       \tab positive number \tab temperature \cr
+\code{niter}     \tab positive integer \tab number of iterations to be run \cr
+\code{t0}        \tab \eqn{(0.5,1]}  \tab gain factor sequence value \cr
+\code{xi}        \tab positive number \tab gain factor sequence exponent \cr
+\code{stepsize}  \tab positive number \tab stepsize for random-walk sampler \cr
+\code{trange}    \tab vector(\eqn{2}) or matrix(\eqn{m\times 2}) \tab domain of estimates for \eqn{\log(g_i /\pi_i)}
+}}
+}
+\value{
+a named list containing \describe{
+\item{samples}{an \eqn{(niter\times nv)} samples generated.}
+\item{frequency}{length-\eqn{m} vector of visiting frequency for energy partition.}
+\item{theta}{length-\eqn{m} vector of estimates of \eqn{\log(g_i / \pi_i)}}
+}
+}
 \description{
-Stochastic Approximation Monte Carlo (SAMC) Sampler
+The function \code{SAMC} is a generic SAMC sampler for distributions on continuous domain. An \eqn{R} function for 
+negative log density of your choice is required, as well as some parameters in SAMC framework.
 }
 \examples{
 \dontrun{

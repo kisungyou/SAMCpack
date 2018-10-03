@@ -4,9 +4,9 @@
 #' It is a stochatic approximation method. At every iteration, only a subset of the data is drawn and used to update the estimation of the parameters. 
 #' The data are assumed to have a powered exponential correlation structure.
 #' 
-#' @param data an \eqn{(n\times p)} matrix. The first two columns of the data are 
-#' 2D location coordinates (\eqn{x_1, x_2}) for each observation. The third column gives the 
-#' response value (\eqn{y}). Extra covariates can be included from the 4th column and beyond.
+#' @param coords an \eqn{(n\times 2)} matrix. 2D location coordinates.
+#' @param y      a length-\eqn{n} vector of response value.
+#' @param X      an \eqn{(n\times k)} matrix of extra covariates.
 #' @param nsubset the size of the subset drawn from the data. It is recommended to be set to 300 or higher.
 #' @param stepscale gain factor control. It specifies the number of iterations when the gain factor begins to shrink. For example, one can be set it equal to 2 times the burn-in steps.
 #' @param niter the total number of iterations for stochastic approximation. In practice, it is recommended to be set to 2500 or higher.
@@ -19,23 +19,42 @@
 #' \item{tausq}{the estimate of nugget variance.}
 #' }
 #' 
-#' @examples 
-#' ## Load Data
+#' @examples
+#' ##### load example data pre-loaded
 #' data(gdata)
 #' 
-#' ## Run RSA
-#' SAMCrsa(gdata, nsubset=50, stepscale=40, niter=100, warm=20)
+#' ##### run RSA
+#' output = SAMCrsa(gdata$coords, gdata$y, gdata$X, nsubset=50, stepscale=40, niter=100, warm=20)
 #' 
 #' @references
 #' \insertRef{SAMCrsa}{SAMCpack}
 #' 
 #' @author Yichen Cheng, Faming Liang, Kisung You
 #' @export
-SAMCrsa <- function(data,nsubset=max(ceiling(nrow(data)/5),10),
+SAMCrsa <- function(coords,y,X=NULL,nsubset=max(ceiling(length(y)/5),10),
                     stepscale=200,niter=2500,warm=100){
-  if ((!is.matrix(data))||(ncol(data)<3)){
-    stop("* SAMCrsa : 'data' must be a matrix of at least 3 columns.")
+  if ((!is.matrix(coords))||(ncol(coords)!=2)){
+    stop("* SAMCrsa : 'X' should be a matrix of 2 columns.")
   }
+  if (is.vector(y)){
+    y = matrix(y)
+  }
+  N = nrow(coords)
+  if (N!=nrow(y)){
+    stop("* SAMCrsa : nrow(coords) should be equal to length(y).")
+  }
+  if ((is.null(X))&&(length(X)==0)){
+    data = cbind(coords,y)
+  } else {
+    if (is.vector(X)){
+      X = matrix(X)
+    }
+    if ((!is.matrix(X))||(nrow(X)!=N)){
+      stop("* SAMCrsa : if given covariates 'X', it must have 'nrow(coords)' number of rows.")
+    }
+    data = cbind(coords,y,X)
+  }
+  
   if ((nsubset < 2)||(nsubset >= nrow(data))){
     stop("* SAMCrsa : 'nsubset' is invalid.")
   }

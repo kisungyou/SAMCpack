@@ -1,5 +1,40 @@
 #' SAMC Sampler with C++ 
 #' 
+#' The function \code{SAMCPLUS} is a generic SAMC sampler for distributions on continuous domain. Instead of an \code{R} function, 
+#' \code{SAMCPLUS} requires a function pointer to be provided for faster sampling, with all other values and parameters being equal 
+#' to its cousin \code{\link{SAMC}}. We limited the flexibility of the function pointer to be passed. See the below for more details or 
+#' the vignette.
+#' 
+#' @section Note on writing your own C++ function:
+#' First, the output should be returned as \code{SEXP} rather than \code{double} in evaluating the negative log density. Second, the variable and 
+#' extra data should be provided as \code{arma::vec} and \code{arma::mat} type, with an exception for \code{Rcpp::List} for list-valued data. This means, for the \code{data} Even 
+#' though we could let data to be passed freely, we believe using  \href{https://cran.r-project.org/web/packages/RcppArmadillo/index.html}{RcppArmadillo}, which is a templated linear algebra library, 
+#' enables easier writing of one's own C++ code in a style of R or MATLAB while providing sufficient computational power. Furthermore, limiting extra data to one of 3 types (vector, matrix, and list) 
+#' reduces potential type-matching issue in encapsulating of the current environment by removing unexpected errors a user might have incurred.
+#' 
+#' @param nv number of variables.
+#' @param energy a \code{CPP} function pointer for negative log density.
+#' @param data extra data to be supplemented. It should be a vector, a matrix, or a list. 
+#' @param options a list specifying parameters/options for SAMC algorithm,
+#' \tabular{lll}{
+#' PARAMETER        \tab SPECIFICATION \tab DESCRIPTION \cr
+#' \code{domain}    \tab vector(\eqn{2}) or matrix(\eqn{(nv\times 2)}) \tab domain of sample space \cr
+#' \code{partition} \tab vector(\eqn{m}) \tab energy partition \cr
+#' \code{vecpi}     \tab vector(\eqn{m-1}) \tab desired sampling distribution \cr
+#' \code{tau}       \tab positive number \tab temperature \cr
+#' \code{niter}     \tab positive integer \tab number of iterations to be run \cr
+#' \code{t0}        \tab \eqn{(0.5,1]}  \tab gain factor sequence value \cr
+#' \code{xi}        \tab positive number \tab gain factor sequence exponent \cr
+#' \code{stepsize}  \tab positive number \tab stepsize for random-walk sampler \cr
+#' \code{trange}    \tab vector(\eqn{2}) or matrix(\eqn{m\times 2}) \tab domain of estimates for \eqn{\log(g_i /\pi_i)}
+#' }
+#' 
+#' @return a named list containing \describe{
+#' \item{samples}{an \eqn{(niter\times nv)} samples generated.}
+#' \item{frequency}{length-\eqn{m} vector of visiting frequency for energy partition.}
+#' \item{theta}{length-\eqn{m} vector of estimates of \eqn{\log(g_i / \pi_i)}}
+#' }
+#' 
 #' @examples 
 #' \dontrun{
 #' ##### Two-Dimensional Multimodal sampling

@@ -1,4 +1,5 @@
 // [[Rcpp::depends(RcppArmadillo)]]
+
 #include <RcppArmadillo.h>
 #include "cpp_auxiliary.h"
 
@@ -35,6 +36,7 @@ List core_samc_density(T func,const int nv, arma::vec& energy, arma::mat& domain
 
   // 1-4. main iteration
   for (int i=0;i<niter;i++){
+    
     // A-1. sample generation
     arma::vec y = sampling_rwvec(xold,domain,stepsize);
     // A-2. compute ratio
