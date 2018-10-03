@@ -44,7 +44,7 @@ the vignette.
 
 First, the output should be returned as \code{SEXP} rather than \code{double} in evaluating the negative log density. Second, the variable and 
 extra data should be provided as \code{arma::vec} and \code{arma::mat} type, with an exception for \code{Rcpp::List} for list-valued data. This means, for the \code{data} Even 
-though we could let data to be passed freely, we believe using  \href{https://cran.r-project.org/web/packages/RcppArmadillo/index.html}{RcppArmadillo}, which is a templated linear algebra library, 
+though we could let data to be passed freely, we believe using \pkg{RcppArmadillo}, which is a templated C++ linear algebra library, 
 enables easier writing of one's own C++ code in a style of R or MATLAB while providing sufficient computational power. Furthermore, limiting extra data to one of 3 types (vector, matrix, and list) 
 reduces potential type-matching issue in encapsulating of the current environment by removing unexpected errors a user might have incurred.
 }

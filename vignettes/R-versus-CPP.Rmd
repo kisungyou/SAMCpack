@@ -110,7 +110,7 @@ boxplot(execution, xlab="")
 In the Option 2 of previous section, once a CPP script is written as an inline function, it can be wrapped as `XPtr`. In order to keep consistency across a variety code snippets and minimize potential error, we decided to impose some restrictions.
 
 * Return type must be `SEXP`, short for S-Expression, as in `SEXP function(...)`.
-* First input argument is a `arma::vec` object from [RcppArmadillo](https://cran.r-project.org/web/packages/RcppArmadillo/index.html), representing random variable $x$.
+* First input argument is a `arma::vec` object from [RcppArmadillo](https://CRAN.R-project.org/package=RcppArmadillo), representing random variable $x$.
 * Second input argument is used when additional data needs to be inserted through `data` argument of `SAMCPLUS`. They are should be one of
   + `arma::vec` for a vector,
   + `arma::mat` for a matrix, or
@@ -118,7 +118,7 @@ In the Option 2 of previous section, once a CPP script is written as an inline f
   * When you use `List` as your data, type conversion or suitable adjustment may be required.
 
 ### Why RcppArmadillo?
-[RcppArmadillo](https://cran.r-project.org/web/packages/RcppArmadillo/index.html) is a templated C++ linear algebra library. We believe it balances *ease of use* like other script computing platform and *computational efficiency*. For example, most of expressions many statisticians often use involve some degree of numerical operations and RcppArmadillo is definitely one of the optimal options if not the best. For more details about the library, please see the introductory [vignette](https://cran.r-project.org/web/packages/RcppArmadillo/vignettes/RcppArmadillo-intro.pdf).
+[RcppArmadillo](https://CRAN.R-project.org/package=RcppArmadillo) is a templated C++ linear algebra library. We believe it balances *ease of use* like other script computing platform and *computational efficiency*. For example, most of expressions many statisticians often use involve some degree of numerical operations and RcppArmadillo is definitely one of the optimal options if not the best. For more details about the library, please see the introductory [vignette](https://CRAN.R-project.org/package=RcppArmadillo/vignettes/RcppArmadillo-intro.pdf).
 
 ***
 
