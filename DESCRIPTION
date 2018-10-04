@@ -6,7 +6,7 @@ Authors@R: c(person("Yichen","Cheng",role="aut",email="ycheng11@gsu.edu"),
              person("Ick Hoon","Jin", role = "aut", email="IckHoon.Jin.32@nd.edu"),
              person("Faming","Liang", role = "aut", email = "fmliang@purdue.edu"),
              person("Kisung","You", role = c("aut", "cre"), email = "kyou@nd.edu"))
-Description: Stochastic Approximation Monte Carlo (SAMC) is one of the celebrated markov chain monte carlo (MCMC) algorithms. It is known to be capable of sampling from multimodal or doubly intractable distributions. We provide generic  SAMC samplers for continuous distributions. User-specificed densities in R and C++ are both supported. We also provide functions for specific problems that exploit SAMC computation. See Liang et al (2010) <doi:10.1002/9780470669723> for complete introduction to the method.
+Description: Stochastic Approximation Monte Carlo (SAMC) is one of the celebrated Markov chain Monte Carlo (MCMC) algorithms. It is known to be capable of sampling from multimodal or doubly intractable distributions. We provide generic SAMC samplers for continuous distributions. User-specified densities in R and C++ are both supported. We also provide functions for specific problems that exploit SAMC computation. See Liang et al (2010) <doi:10.1002/9780470669723> for complete introduction to the method.
 License: GPL (>=3)
 Encoding: UTF-8
 LazyData: true
