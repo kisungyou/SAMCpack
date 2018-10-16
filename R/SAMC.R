@@ -27,7 +27,6 @@
 #' 
 #' 
 #' @examples
-#' \dontrun{
 #' ##### Two-Dimensional Multimodal sampling
 #' ## Step 1 : Define negative log-density function as an R function
 #' func_r = function(x){
@@ -43,7 +42,7 @@
 #' myoption$tau       = 1.0
 #' myoption$domain    = c(-1.1,1.1)
 #' myoption$vecpi     = as.vector(rep(1/41,41))
-#' myoption$niter     = 200000
+#' myoption$niter     = 20000
 #' myoption$stepsize  = c(0.25, 10)
 #' 
 #' ## Step 3 : Run The Code
@@ -56,7 +55,6 @@
 #' barplot(as.vector(res$frequency/sum(res$frequency)),
 #'         main="visiting frequency by energy partition",
 #'         names.arg=myoption$partition[-1], xlab="energy")
-#' }
 #' 
 #' @references 
 #' \insertRef{SAMC}{SAMCpack}

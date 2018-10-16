@@ -50,7 +50,7 @@ reduces potential type-matching issue in encapsulating of the current environmen
 }
 
 \examples{
-\dontrun{
+\donttest{
 ##### Two-Dimensional Multimodal sampling
 ## Step 1 : Define negative log-density function as a CPP function
 cppscript = "SEXP funcH(arma::vec x){
