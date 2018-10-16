@@ -54,7 +54,7 @@
 #' myoption$tau       = 1.0
 #' myoption$domain    = c(-1.1,1.1)
 #' myoption$vecpi     = as.vector(rep(1/41,41))
-#' myoption$niter     = 200000
+#' myoption$niter     = 200001
 #' myoption$stepsize  = 0.25
 #' 
 #' ## Step 3 : Run The Code
