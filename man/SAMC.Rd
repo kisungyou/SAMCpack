@@ -37,6 +37,7 @@ The function \code{SAMC} is a generic SAMC sampler for distributions on continuo
 negative log density of your choice is required, as well as some parameters in SAMC framework.
 }
 \examples{
+\donttest{
 ##### Two-Dimensional Multimodal sampling
 ## Step 1 : Define negative log-density function as an R function
 func_r = function(x){
@@ -65,6 +66,7 @@ plot(res$samples[select,1], res$samples[select,2],xlab='x',ylab='y',main='sample
 barplot(as.vector(res$frequency/sum(res$frequency)),
         main="visiting frequency by energy partition",
         names.arg=myoption$partition[-1], xlab="energy")
+}
 
 }
 \references{

@@ -13,7 +13,7 @@
 #' @param warm the number of burn-in iterations
 #' 
 #' @return a named list containing \describe{
-#' \item{beta}{the coefficient estimates of the mean effect. It is a vector of lenght equal to the number of coefficients plus 1.}
+#' \item{beta}{the coefficient estimates of the mean effect. It is a vector of length equal to the number of coefficients plus 1.}
 #' \item{phi}{the shape estimate in the powered exponential correlation matrix.}
 #' \item{sigmasq}{the estimate of error variance.}
 #' \item{tausq}{the estimate of nugget variance.}
@@ -74,24 +74,32 @@ SAMCrsa <- function(coords,y,X=NULL,nsubset=max(ceiling(length(y)/5),10),
   phi = 0;
   sigmasq = 0;
   tausq = 0;
-  RetVec2 = .C("RSAc",
-               as.numeric(data),
-               as.integer(dataCol),
-               as.integer(dataNum),
-               as.integer(nsubset),
-               as.integer(stepscale),
-               as.integer(niter),
-               as.integer(warm),             
-               as.numeric(beta),
-               as.numeric(phi),
-               as.numeric(sigmasq),
-               as.numeric(tausq)
-  )
-
-  beta = RetVec2[[8]];
-  phi = RetVec2[[9]];
-  sigmasq = RetVec2[[10]];
-  tausq = RetVec2[[11]];
+  # RetVec2 = .C("RSAc",
+  # as.numeric(data),
+  # as.integer(dataCol),
+  # as.integer(dataNum),
+  # as.integer(nsubset),
+  # as.integer(stepscale),
+  # as.integer(niter),
+  # as.integer(warm),
+  # as.numeric(beta),
+  # as.numeric(phi),
+  # as.numeric(sigmasq),
+  # as.numeric(tausq)
+  # )
+  # 
+  # beta = RetVec2[[8]];
+  # phi = RetVec2[[9]];
+  # sigmasq = RetVec2[[10]];
+  # tausq = RetVec2[[11]];
+  
+  RetVec2 = RSAarma(as.numeric(data),as.integer(dataCol),as.integer(dataNum),as.integer(nsubset),
+                    as.integer(stepscale),as.integer(niter),as.integer(warm))
+  beta    = RetVec2$pbeta
+  phi     = RetVec2$pPhi
+  sigmasq = RetVec2$pSigmasq
+  tausq   = RetVec2$pTausq
+  
   Z = NULL
   z = list(beta = beta,phi=phi,sigmasq=sigmasq,tausq=tausq)
   #return(c(beta0,beta1,phi,sigmasq,tausq));

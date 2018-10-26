@@ -9,6 +9,10 @@ rescale_hori2 <- function(A) {
     .Call(`_SAMCpack_rescale_hori2`, A)
 }
 
+RSAarma <- function(pData, pDataCol, pDataNum, pSampleNum, pStepscale, pTotal_Iteration, pWarm) {
+    .Call(`_SAMCpack_RSAarma`, pData, pDataCol, pDataNum, pSampleNum, pStepscale, pTotal_Iteration, pWarm)
+}
+
 exec_SAMC <- function(func, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init) {
     .Call(`_SAMCpack_exec_SAMC`, func, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init)
 }

@@ -28,6 +28,23 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// RSAarma
+Rcpp::List RSAarma(arma::vec pData, int pDataCol, int pDataNum, int pSampleNum, int pStepscale, int pTotal_Iteration, int pWarm);
+RcppExport SEXP _SAMCpack_RSAarma(SEXP pDataSEXP, SEXP pDataColSEXP, SEXP pDataNumSEXP, SEXP pSampleNumSEXP, SEXP pStepscaleSEXP, SEXP pTotal_IterationSEXP, SEXP pWarmSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type pData(pDataSEXP);
+    Rcpp::traits::input_parameter< int >::type pDataCol(pDataColSEXP);
+    Rcpp::traits::input_parameter< int >::type pDataNum(pDataNumSEXP);
+    Rcpp::traits::input_parameter< int >::type pSampleNum(pSampleNumSEXP);
+    Rcpp::traits::input_parameter< int >::type pStepscale(pStepscaleSEXP);
+    Rcpp::traits::input_parameter< int >::type pTotal_Iteration(pTotal_IterationSEXP);
+    Rcpp::traits::input_parameter< int >::type pWarm(pWarmSEXP);
+    rcpp_result_gen = Rcpp::wrap(RSAarma(pData, pDataCol, pDataNum, pSampleNum, pStepscale, pTotal_Iteration, pWarm));
+    return rcpp_result_gen;
+END_RCPP
+}
 // exec_SAMC
 Rcpp::List exec_SAMC(Function func, const int nv, arma::vec& energy, arma::mat& domain, const double tau, const int niter, arma::vec& vecpi, const double t0, const double xi, arma::vec stepsize, arma::mat& trange, arma::vec& init);
 RcppExport SEXP _SAMCpack_exec_SAMC(SEXP funcSEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP tauSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP trangeSEXP, SEXP initSEXP) {

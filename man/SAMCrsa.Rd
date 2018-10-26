@@ -24,7 +24,7 @@ SAMCrsa(coords, y, X = NULL, nsubset = max(ceiling(length(y)/5), 10),
 }
 \value{
 a named list containing \describe{
-\item{beta}{the coefficient estimates of the mean effect. It is a vector of lenght equal to the number of coefficients plus 1.}
+\item{beta}{the coefficient estimates of the mean effect. It is a vector of length equal to the number of coefficients plus 1.}
 \item{phi}{the shape estimate in the powered exponential correlation matrix.}
 \item{sigmasq}{the estimate of error variance.}
 \item{tausq}{the estimate of nugget variance.}

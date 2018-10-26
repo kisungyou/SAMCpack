@@ -1,7 +1,7 @@
 Package: SAMCpack
 Type: Package
 Title: Stochastic Approximation Monte Carlo (SAMC) Sampler and Methods
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(person("Yichen","Cheng",role="aut",email="ycheng11@gsu.edu"),
              person("Ick Hoon","Jin", role = "aut", email="IckHoon.Jin.32@nd.edu"),
              person("Faming","Liang", role = "aut", email = "fmliang@purdue.edu"),
