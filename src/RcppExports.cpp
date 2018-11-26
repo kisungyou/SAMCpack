@@ -6,28 +6,6 @@
 
 using namespace Rcpp;
 
-// rescale_vert2
-arma::mat rescale_vert2(arma::mat A);
-RcppExport SEXP _SAMCpack_rescale_vert2(SEXP ASEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat >::type A(ASEXP);
-    rcpp_result_gen = Rcpp::wrap(rescale_vert2(A));
-    return rcpp_result_gen;
-END_RCPP
-}
-// rescale_hori2
-arma::mat rescale_hori2(arma::mat A);
-RcppExport SEXP _SAMCpack_rescale_hori2(SEXP ASEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< arma::mat >::type A(ASEXP);
-    rcpp_result_gen = Rcpp::wrap(rescale_hori2(A));
-    return rcpp_result_gen;
-END_RCPP
-}
 // RSAarma
 Rcpp::List RSAarma(arma::vec pData, int pDataCol, int pDataNum, int pSampleNum, int pStepscale, int pTotal_Iteration, int pWarm);
 RcppExport SEXP _SAMCpack_RSAarma(SEXP pDataSEXP, SEXP pDataColSEXP, SEXP pDataNumSEXP, SEXP pSampleNumSEXP, SEXP pStepscaleSEXP, SEXP pTotal_IterationSEXP, SEXP pWarmSEXP) {
@@ -178,6 +156,28 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::vec >::type init(initSEXP);
     Rcpp::traits::input_parameter< SEXP >::type data(dataSEXP);
     rcpp_result_gen = Rcpp::wrap(exec_samcfast_sexpdata(func_, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init, data));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rescale_vert2
+arma::mat rescale_vert2(arma::mat A);
+RcppExport SEXP _SAMCpack_rescale_vert2(SEXP ASEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type A(ASEXP);
+    rcpp_result_gen = Rcpp::wrap(rescale_vert2(A));
+    return rcpp_result_gen;
+END_RCPP
+}
+// rescale_hori2
+arma::mat rescale_hori2(arma::mat A);
+RcppExport SEXP _SAMCpack_rescale_hori2(SEXP ASEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type A(ASEXP);
+    rcpp_result_gen = Rcpp::wrap(rescale_hori2(A));
     return rcpp_result_gen;
 END_RCPP
 }
