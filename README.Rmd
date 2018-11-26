@@ -5,16 +5,6 @@ output:
 html_preview: false
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
 # SAMCpack: Stochastic Approximation Monte Carlo (SAMC) Sampler and Methods
 
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/SAMCpack?color=green)](https://CRAN.R-project.org/package=SAMCpack)
