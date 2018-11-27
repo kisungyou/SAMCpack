@@ -2,14 +2,7 @@
 title: "Fast Computation with XPtr"
 author: "Kisung You"
 date: "`r Sys.Date()`"
-output:
-  rmarkdown::html_document:
-    highlight: tango
-    theme: united
-    toc: yes
-    toc_depth: 3
-    toc_float: yes
-    self_contained: yes
+output: rmarkdown::html_document
 bibliography: bibSAMC.bib
 vignette: >
   %\VignetteIndexEntry{Fast Computation with XPtr}       
@@ -20,7 +13,7 @@ vignette: >
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  cache=FALSE, autodep=TRUE, cache.comments=FALSE,
+  cache=TRUE, autodep=TRUE, cache.comments=FALSE,
   comment = "#>"
 )
 ```

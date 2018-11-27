@@ -1,7 +1,7 @@
 ## ----setup, include = FALSE----------------------------------------------
 knitr::opts_chunk$set(
   collapse = TRUE,
-  cache=FALSE, autodep=TRUE, cache.comments=FALSE,
+  cache=TRUE, autodep=TRUE, cache.comments=FALSE,
   comment = "#>"
 )
 
