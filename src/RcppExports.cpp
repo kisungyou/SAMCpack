@@ -45,6 +45,27 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// exec_SAMCoptim
+Rcpp::List exec_SAMCoptim(Function func, const int nv, arma::vec& energy, arma::mat& domain, const int niter, arma::vec& vecpi, const double t0, const double xi, arma::vec stepsize, arma::mat& trange, arma::vec& init);
+RcppExport SEXP _SAMCpack_exec_SAMCoptim(SEXP funcSEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP trangeSEXP, SEXP initSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Function >::type func(funcSEXP);
+    Rcpp::traits::input_parameter< const int >::type nv(nvSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type energy(energySEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type domain(domainSEXP);
+    Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type vecpi(vecpiSEXP);
+    Rcpp::traits::input_parameter< const double >::type t0(t0SEXP);
+    Rcpp::traits::input_parameter< const double >::type xi(xiSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type stepsize(stepsizeSEXP);
+    Rcpp::traits::input_parameter< arma::mat& >::type trange(trangeSEXP);
+    Rcpp::traits::input_parameter< arma::vec& >::type init(initSEXP);
+    rcpp_result_gen = Rcpp::wrap(exec_SAMCoptim(func, nv, energy, domain, niter, vecpi, t0, xi, stepsize, trange, init));
+    return rcpp_result_gen;
+END_RCPP
+}
 // exec_samcfast_type0
 Rcpp::List exec_samcfast_type0(SEXP func_, const int nv, arma::vec& energy, arma::mat& domain, const double tau, const int niter, arma::vec& vecpi, const double t0, const double xi, arma::vec stepsize, arma::mat& trange, arma::vec init);
 RcppExport SEXP _SAMCpack_exec_samcfast_type0(SEXP func_SEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP tauSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP trangeSEXP, SEXP initSEXP) {

@@ -2,6 +2,7 @@
 
 export(SAMC)
 export(SAMCPLUS)
+export(SAMCoptim)
 export(SAMCrsa)
 import(RcppXPtrUtils)
 import(Rdpack)
