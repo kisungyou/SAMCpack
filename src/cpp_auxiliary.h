@@ -29,4 +29,6 @@ arma::vec get_gridvec(const double pstart, const double pend, const int N);
 double evalcsamc_g2(arma::mat g, arma::vec gvec1, arma::vec gvec2, arma::vec lbdx);
 // Auxiliary 8 : kernel density update for 2dimensional case
 arma::mat evalcsamc_ks2(arma::vec vec1, arma::vec vec2, arma::mat ysamples, arma::mat H);
+// Auxiliary 9 : initialize theta to be a vector of [-2,2] uniform
+arma::vec init_theta(int m);
 #endif

@@ -9,8 +9,8 @@ exec_SAMC <- function(func, nv, energy, domain, tau, niter, vecpi, t0, xi, steps
     .Call(`_SAMCpack_exec_SAMC`, func, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init)
 }
 
-exec_SAMCoptim <- function(func, nv, energy, domain, niter, vecpi, t0, xi, stepsize, trange, init) {
-    .Call(`_SAMCpack_exec_SAMCoptim`, func, nv, energy, domain, niter, vecpi, t0, xi, stepsize, trange, init)
+exec_SAMCoptim <- function(func, nv, energy, domain, niter, vecpi, t0, xi, stepsize, init, tau_h, tau_star, tau_t0, trunc_init, trunc_r) {
+    .Call(`_SAMCpack_exec_SAMCoptim`, func, nv, energy, domain, niter, vecpi, t0, xi, stepsize, init, tau_h, tau_star, tau_t0, trunc_init, trunc_r)
 }
 
 exec_samcfast_type0 <- function(func_, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init) {

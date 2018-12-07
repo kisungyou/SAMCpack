@@ -209,7 +209,7 @@ arma::mat evalcsamc_ks2(arma::vec vec1, arma::vec vec2, arma::mat ysamples, arma
       for (int it=0;it<M;it++){
         x = tmpz-ysamples.col(it);
         if (norm(x)<0.01){
-          zeta(i,j) += exp(-dot(x,solve(H,x))/2)/sqrt(detH);
+          zeta(i,j) += std::exp(static_cast<float>(-dot(x,solve(H,x))/2))/std::sqrt(static_cast<float>(detH));
         }
       }
     }
@@ -219,4 +219,13 @@ arma::mat evalcsamc_ks2(arma::vec vec1, arma::vec vec2, arma::mat ysamples, arma
   zeta = zeta/allsum;
   // 8-4. return output
   return(zeta);
+}
+// Auxiliary 9 : init theta (length-m, in between [-2,2])
+arma::vec init_theta(int m){
+  arma::vec output(m,fill::randu);
+  output = output*4;
+  for (int i=0;i<m;i++){
+    output(i) = output(i)-2.0;
+  }
+  return(output);
 }

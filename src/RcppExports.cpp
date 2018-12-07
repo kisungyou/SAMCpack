@@ -46,8 +46,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // exec_SAMCoptim
-Rcpp::List exec_SAMCoptim(Function func, const int nv, arma::vec& energy, arma::mat& domain, const int niter, arma::vec& vecpi, const double t0, const double xi, arma::vec stepsize, arma::mat& trange, arma::vec& init);
-RcppExport SEXP _SAMCpack_exec_SAMCoptim(SEXP funcSEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP trangeSEXP, SEXP initSEXP) {
+Rcpp::List exec_SAMCoptim(Function func, const int nv, arma::vec& energy, arma::mat& domain, const int niter, arma::vec& vecpi, double t0, const double xi, arma::vec stepsize, arma::vec& init, double tau_h, double tau_star, double tau_t0, double trunc_init, double trunc_r);
+RcppExport SEXP _SAMCpack_exec_SAMCoptim(SEXP funcSEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP initSEXP, SEXP tau_hSEXP, SEXP tau_starSEXP, SEXP tau_t0SEXP, SEXP trunc_initSEXP, SEXP trunc_rSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -57,12 +57,16 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< arma::mat& >::type domain(domainSEXP);
     Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
     Rcpp::traits::input_parameter< arma::vec& >::type vecpi(vecpiSEXP);
-    Rcpp::traits::input_parameter< const double >::type t0(t0SEXP);
+    Rcpp::traits::input_parameter< double >::type t0(t0SEXP);
     Rcpp::traits::input_parameter< const double >::type xi(xiSEXP);
     Rcpp::traits::input_parameter< arma::vec >::type stepsize(stepsizeSEXP);
-    Rcpp::traits::input_parameter< arma::mat& >::type trange(trangeSEXP);
     Rcpp::traits::input_parameter< arma::vec& >::type init(initSEXP);
-    rcpp_result_gen = Rcpp::wrap(exec_SAMCoptim(func, nv, energy, domain, niter, vecpi, t0, xi, stepsize, trange, init));
+    Rcpp::traits::input_parameter< double >::type tau_h(tau_hSEXP);
+    Rcpp::traits::input_parameter< double >::type tau_star(tau_starSEXP);
+    Rcpp::traits::input_parameter< double >::type tau_t0(tau_t0SEXP);
+    Rcpp::traits::input_parameter< double >::type trunc_init(trunc_initSEXP);
+    Rcpp::traits::input_parameter< double >::type trunc_r(trunc_rSEXP);
+    rcpp_result_gen = Rcpp::wrap(exec_SAMCoptim(func, nv, energy, domain, niter, vecpi, t0, xi, stepsize, init, tau_h, tau_star, tau_t0, trunc_init, trunc_r));
     return rcpp_result_gen;
 END_RCPP
 }
