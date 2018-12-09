@@ -34,7 +34,7 @@
 SAMCrsa <- function(coords,y,X=NULL,nsubset=max(ceiling(length(y)/5),10),
                     stepscale=200,niter=2500,warm=100){
   if ((!is.matrix(coords))||(ncol(coords)!=2)){
-    stop("* SAMCrsa : 'X' should be a matrix of 2 columns.")
+    stop("* SAMCrsa : 'coords' should be a matrix of 2 columns.")
   }
   if (is.vector(y)){
     y = matrix(y)
@@ -95,10 +95,14 @@ SAMCrsa <- function(coords,y,X=NULL,nsubset=max(ceiling(length(y)/5),10),
   
   RetVec2 = RSAarma(as.numeric(data),as.integer(dataCol),as.integer(dataNum),as.integer(nsubset),
                     as.integer(stepscale),as.integer(niter),as.integer(warm))
-  beta    = RetVec2$pbeta
-  phi     = RetVec2$pPhi
-  sigmasq = RetVec2$pSigmasq
-  tausq   = RetVec2$pTausq
+  # beta    = RetVec2$pbeta
+  # phi     = RetVec2$pPhi
+  # sigmasq = RetVec2$pSigmasq
+  # tausq   = RetVec2$pTausq
+  beta    = RetVec2[[8]]
+  phi     = RetVec2[[9]]
+  sigmasq = RetVec2[[10]]
+  tausq   = RetVec2[[11]]
   
   Z = NULL
   z = list(beta = beta,phi=phi,sigmasq=sigmasq,tausq=tausq)
