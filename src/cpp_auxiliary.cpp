@@ -229,3 +229,15 @@ arma::vec init_theta(int m){
   }
   return(output);
 }
+
+// [[Rcpp::export]]
+arma::uvec sample_int(int n, int k) {
+  Rcpp::IntegerVector pool = Rcpp::seq(0, n-1);
+  std::random_shuffle(pool.begin(), pool.end());
+  
+  arma::uvec output(k,fill::zeros);
+  for (int i=0;i<k;i++){
+    output(i) = pool[i];
+  }
+  return(output);
+}

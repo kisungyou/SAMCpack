@@ -184,6 +184,25 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// ksSAMCrsa
+Rcpp::List ksSAMCrsa(arma::mat coords, arma::vec Y, arma::mat X, int nsubset, int maxiter, double a0, double t0, double b0, double eta);
+RcppExport SEXP _SAMCpack_ksSAMCrsa(SEXP coordsSEXP, SEXP YSEXP, SEXP XSEXP, SEXP nsubsetSEXP, SEXP maxiterSEXP, SEXP a0SEXP, SEXP t0SEXP, SEXP b0SEXP, SEXP etaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type coords(coordsSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type Y(YSEXP);
+    Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
+    Rcpp::traits::input_parameter< int >::type nsubset(nsubsetSEXP);
+    Rcpp::traits::input_parameter< int >::type maxiter(maxiterSEXP);
+    Rcpp::traits::input_parameter< double >::type a0(a0SEXP);
+    Rcpp::traits::input_parameter< double >::type t0(t0SEXP);
+    Rcpp::traits::input_parameter< double >::type b0(b0SEXP);
+    Rcpp::traits::input_parameter< double >::type eta(etaSEXP);
+    rcpp_result_gen = Rcpp::wrap(ksSAMCrsa(coords, Y, X, nsubset, maxiter, a0, t0, b0, eta));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rescale_vert2
 arma::mat rescale_vert2(arma::mat A);
 RcppExport SEXP _SAMCpack_rescale_vert2(SEXP ASEXP) {
@@ -203,6 +222,18 @@ BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< arma::mat >::type A(ASEXP);
     rcpp_result_gen = Rcpp::wrap(rescale_hori2(A));
+    return rcpp_result_gen;
+END_RCPP
+}
+// sample_int
+arma::uvec sample_int(int n, int k);
+RcppExport SEXP _SAMCpack_sample_int(SEXP nSEXP, SEXP kSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    rcpp_result_gen = Rcpp::wrap(sample_int(n, k));
     return rcpp_result_gen;
 END_RCPP
 }

@@ -31,4 +31,6 @@ double evalcsamc_g2(arma::mat g, arma::vec gvec1, arma::vec gvec2, arma::vec lbd
 arma::mat evalcsamc_ks2(arma::vec vec1, arma::vec vec2, arma::mat ysamples, arma::mat H);
 // Auxiliary 9 : initialize theta to be a vector of [-2,2] uniform
 arma::vec init_theta(int m);
+// Auxiliary 10 : sample k random integers in 0:(n-1)
+arma::uvec sample_int(int n, int k);
 #endif

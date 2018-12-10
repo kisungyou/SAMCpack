@@ -36,26 +36,26 @@ SAMCrsa <- function(coords,y,X=NULL,nsubset=max(ceiling(length(y)/5),10),
   if ((!is.matrix(coords))||(ncol(coords)!=2)){
     stop("* SAMCrsa : 'coords' should be a matrix of 2 columns.")
   }
-  if (is.vector(y)){
-    y = matrix(y)
+  if (is.matrix(y)){ # vectorize y
+    y = as.vector(y)
   }
   N = nrow(coords)
-  if (N!=nrow(y)){
+  if (nrow(coords)!=length(y)){
     stop("* SAMCrsa : nrow(coords) should be equal to length(y).")
   }
+  flag.nocov = FALSE
   if ((is.null(X))&&(length(X)==0)){
-    data = cbind(coords,y)
-  } else {
-    if (is.vector(X)){
-      X = matrix(X)
-    }
-    if ((!is.matrix(X))||(nrow(X)!=N)){
-      stop("* SAMCrsa : if given covariates 'X', it must have 'nrow(coords)' number of rows.")
-    }
-    data = cbind(coords,y,X)
+    X = array(0,c(N,1))
+    flag.nocov = TRUE
+  }
+  if (is.vector(X)){
+    X = as.matrix(X, ncol=1)
+  }
+  if (nrow(X)!=N){
+    stop("* SAMCrsa : if given covariates 'X', it must have 'nrow(coords)' number of rows.")
   }
   
-  if ((nsubset < 2)||(nsubset >= nrow(data))){
+  if ((nsubset < 2)||(nsubset >= N)){
     stop("* SAMCrsa : 'nsubset' is invalid.")
   }
   if (stepscale <= 0){
@@ -68,44 +68,50 @@ SAMCrsa <- function(coords,y,X=NULL,nsubset=max(ceiling(length(y)/5),10),
     stop("* SAMCrsa : 'warm' controls the burn-in's.")
   }
   
-  dataCol = ncol(data);
-  dataNum = nrow(data);
-  beta = rep(0,dataCol-2);
-  phi = 0;
-  sigmasq = 0;
-  tausq = 0;
-  # RetVec2 = .C("RSAc",
-  # as.numeric(data),
-  # as.integer(dataCol),
-  # as.integer(dataNum),
-  # as.integer(nsubset),
-  # as.integer(stepscale),
-  # as.integer(niter),
-  # as.integer(warm),
-  # as.numeric(beta),
-  # as.numeric(phi),
-  # as.numeric(sigmasq),
-  # as.numeric(tausq)
-  # )
+  a0 = 0.001
+  b0 = 100
+  t0 = 400
+  eta = 0.55
+  ksout = ksSAMCrsa(coords, y, X, nsubset, as.integer(niter+warm), a0, t0, b0, eta)
+  
+
+  if (flag.nocov){ # no covariance
+    output = list()
+    output$beta = ksout$beta0
+    output$phi  = ksout$phi
+    output$sigmasq = ksout$sig2
+    output$tausq   = ksout$tau2
+  } else {
+    output = list()
+    output$beta = c(ksout$beta0, as.vector(ksout$betas))
+    output$phi  = ksout$phi
+    output$sigmasq = ksout$sig2
+    output$tausq   = ksout$tau2
+  }
+  
+  record = list()
+  record$rec_beta0 = tail(ksout$rec_beta0,niter)
+  record$rec_betas = tail(ksout$rec_betas,niter)
+  record$rec_phi   = tail(ksout$rec_phi,niter)
+  record$rec_sig2  = tail(ksout$rec_sig2,niter)
+  record$rec_tau2  = tail(ksout$rec_tau2,niter)
+  output$record    = record
+  
+  return(output)
+  
+  # RetVec2 = RSAarma(as.numeric(data),as.integer(dataCol),as.integer(dataNum),as.integer(nsubset),
+  #                   as.integer(stepscale),as.integer(niter),as.integer(warm))
+  # # beta    = RetVec2$pbeta
+  # # phi     = RetVec2$pPhi
+  # # sigmasq = RetVec2$pSigmasq
+  # # tausq   = RetVec2$pTausq
+  # beta    = RetVec2[[8]]
+  # phi     = RetVec2[[9]]
+  # sigmasq = RetVec2[[10]]
+  # tausq   = RetVec2[[11]]
   # 
-  # beta = RetVec2[[8]];
-  # phi = RetVec2[[9]];
-  # sigmasq = RetVec2[[10]];
-  # tausq = RetVec2[[11]];
-  
-  RetVec2 = RSAarma(as.numeric(data),as.integer(dataCol),as.integer(dataNum),as.integer(nsubset),
-                    as.integer(stepscale),as.integer(niter),as.integer(warm))
-  # beta    = RetVec2$pbeta
-  # phi     = RetVec2$pPhi
-  # sigmasq = RetVec2$pSigmasq
-  # tausq   = RetVec2$pTausq
-  beta    = RetVec2[[8]]
-  phi     = RetVec2[[9]]
-  sigmasq = RetVec2[[10]]
-  tausq   = RetVec2[[11]]
-  
-  Z = NULL
-  z = list(beta = beta,phi=phi,sigmasq=sigmasq,tausq=tausq)
-  #return(c(beta0,beta1,phi,sigmasq,tausq));
-  return(z)
+  # Z = NULL
+  # z = list(beta = beta,phi=phi,sigmasq=sigmasq,tausq=tausq)
+  # #return(c(beta0,beta1,phi,sigmasq,tausq));
+  # return(z)
 }

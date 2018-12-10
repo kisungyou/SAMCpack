@@ -33,11 +33,19 @@ exec_samcfast_sexpdata <- function(func_, nv, energy, domain, tau, niter, vecpi,
     .Call(`_SAMCpack_exec_samcfast_sexpdata`, func_, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init, data)
 }
 
+ksSAMCrsa <- function(coords, Y, X, nsubset, maxiter, a0, t0, b0, eta) {
+    .Call(`_SAMCpack_ksSAMCrsa`, coords, Y, X, nsubset, maxiter, a0, t0, b0, eta)
+}
+
 rescale_vert2 <- function(A) {
     .Call(`_SAMCpack_rescale_vert2`, A)
 }
 
 rescale_hori2 <- function(A) {
     .Call(`_SAMCpack_rescale_hori2`, A)
+}
+
+sample_int <- function(n, k) {
+    .Call(`_SAMCpack_sample_int`, n, k)
 }
 

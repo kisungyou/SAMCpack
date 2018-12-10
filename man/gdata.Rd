@@ -27,7 +27,8 @@ require("RandomFields")
 DataNum=1000
 gData=grf(DataNum,grid="irreg",DataNum,DataNum,xlims=c(0,100),ylims=c(0,100),nsim=1,mean=0,
           cov.mode="powered.exponential",cov.par=c(1,25),nugget=1,kappa=1)
-gdata = list(y=gData$data+.5+rnorm(DataNum), X=rnorm(DataNum), coords=gData$coords)
+x=rnorm(DataNum)
+gdata = list(y=gData$data+.5+x, X=x, coords=gData$coords)
 }
 }
 \keyword{datasets}
