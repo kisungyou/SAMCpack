@@ -9,7 +9,7 @@
 #' @name SAMCpack-package
 #' @import RcppXPtrUtils
 #' @import Rdpack
-#' @importFrom stats runif
+#' @importFrom stats runif var cov rnorm t.test
 #' @importFrom utils packageVersion
 #' @importFrom Rcpp evalCpp
 #' @useDynLib SAMCpack, .registration=TRUE
