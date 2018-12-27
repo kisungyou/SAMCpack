@@ -5,6 +5,6 @@
     - SAMCttest     : two-sample t-test.
     
 ### Changes in version 0.1.1
-  * Initialize the following documentation:
+  * initialize the following documentation:
     - NEWS for keeping record of updates.
-    - figure issue on vignette is handled..
+  * figure issue on vignette is handled.
