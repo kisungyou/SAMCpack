@@ -33,4 +33,9 @@ arma::mat evalcsamc_ks2(arma::vec vec1, arma::vec vec2, arma::mat ysamples, arma
 arma::vec init_theta(int m);
 // Auxiliary 10 : sample k random integers in 0:(n-1)
 arma::uvec sample_int(int n, int k);
+// Auxiliary 11 : return two randomly permuted vectors in 0:(n-1)
+Rcpp::List two_perm_vec(int n, int k);
+// Auxiliary 12 : find minimal integer index of (val>=sortedvec) = sum(val>=vec)
+int find_mingeq(arma::vec sortedvec, double val);
+  
 #endif

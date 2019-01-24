@@ -45,6 +45,40 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cpp_ttest_statistic
+double cpp_ttest_statistic(arma::vec x, arma::vec y, bool var_equal);
+RcppExport SEXP _SAMCpack_cpp_ttest_statistic(SEXP xSEXP, SEXP ySEXP, SEXP var_equalSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< bool >::type var_equal(var_equalSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_ttest_statistic(x, y, var_equal));
+    return rcpp_result_gen;
+END_RCPP
+}
+// samc_cpp_ttest
+Rcpp::List samc_cpp_ttest(arma::vec x, arma::vec y, const int niter, int L, int m, int t0, arma::vec frequency_old, arma::vec partition_old, arma::vec thetas_old, arma::vec vecpi_old, bool var_equal);
+RcppExport SEXP _SAMCpack_samc_cpp_ttest(SEXP xSEXP, SEXP ySEXP, SEXP niterSEXP, SEXP LSEXP, SEXP mSEXP, SEXP t0SEXP, SEXP frequency_oldSEXP, SEXP partition_oldSEXP, SEXP thetas_oldSEXP, SEXP vecpi_oldSEXP, SEXP var_equalSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type x(xSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
+    Rcpp::traits::input_parameter< const int >::type niter(niterSEXP);
+    Rcpp::traits::input_parameter< int >::type L(LSEXP);
+    Rcpp::traits::input_parameter< int >::type m(mSEXP);
+    Rcpp::traits::input_parameter< int >::type t0(t0SEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type frequency_old(frequency_oldSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type partition_old(partition_oldSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type thetas_old(thetas_oldSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type vecpi_old(vecpi_oldSEXP);
+    Rcpp::traits::input_parameter< bool >::type var_equal(var_equalSEXP);
+    rcpp_result_gen = Rcpp::wrap(samc_cpp_ttest(x, y, niter, L, m, t0, frequency_old, partition_old, thetas_old, vecpi_old, var_equal));
+    return rcpp_result_gen;
+END_RCPP
+}
 // exec_SAMCoptim
 Rcpp::List exec_SAMCoptim(Function func, const int nv, arma::vec& energy, arma::mat& domain, const int niter, arma::vec& vecpi, double t0, const double xi, arma::vec stepsize, arma::vec& init, double tau_h, double tau_star, double tau_t0, double trunc_init, double trunc_r);
 RcppExport SEXP _SAMCpack_exec_SAMCoptim(SEXP funcSEXP, SEXP nvSEXP, SEXP energySEXP, SEXP domainSEXP, SEXP niterSEXP, SEXP vecpiSEXP, SEXP t0SEXP, SEXP xiSEXP, SEXP stepsizeSEXP, SEXP initSEXP, SEXP tau_hSEXP, SEXP tau_starSEXP, SEXP tau_t0SEXP, SEXP trunc_initSEXP, SEXP trunc_rSEXP) {
@@ -234,6 +268,30 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type n(nSEXP);
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     rcpp_result_gen = Rcpp::wrap(sample_int(n, k));
+    return rcpp_result_gen;
+END_RCPP
+}
+// two_perm_vec
+Rcpp::List two_perm_vec(int n, int k);
+RcppExport SEXP _SAMCpack_two_perm_vec(SEXP nSEXP, SEXP kSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    Rcpp::traits::input_parameter< int >::type k(kSEXP);
+    rcpp_result_gen = Rcpp::wrap(two_perm_vec(n, k));
+    return rcpp_result_gen;
+END_RCPP
+}
+// find_mingeq
+int find_mingeq(arma::vec sortedvec, double val);
+RcppExport SEXP _SAMCpack_find_mingeq(SEXP sortedvecSEXP, SEXP valSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type sortedvec(sortedvecSEXP);
+    Rcpp::traits::input_parameter< double >::type val(valSEXP);
+    rcpp_result_gen = Rcpp::wrap(find_mingeq(sortedvec, val));
     return rcpp_result_gen;
 END_RCPP
 }

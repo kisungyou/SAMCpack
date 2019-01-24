@@ -9,6 +9,14 @@ exec_SAMC <- function(func, nv, energy, domain, tau, niter, vecpi, t0, xi, steps
     .Call(`_SAMCpack_exec_SAMC`, func, nv, energy, domain, tau, niter, vecpi, t0, xi, stepsize, trange, init)
 }
 
+cpp_ttest_statistic <- function(x, y, var_equal) {
+    .Call(`_SAMCpack_cpp_ttest_statistic`, x, y, var_equal)
+}
+
+samc_cpp_ttest <- function(x, y, niter, L, m, t0, frequency_old, partition_old, thetas_old, vecpi_old, var_equal) {
+    .Call(`_SAMCpack_samc_cpp_ttest`, x, y, niter, L, m, t0, frequency_old, partition_old, thetas_old, vecpi_old, var_equal)
+}
+
 exec_SAMCoptim <- function(func, nv, energy, domain, niter, vecpi, t0, xi, stepsize, init, tau_h, tau_star, tau_t0, trunc_init, trunc_r) {
     .Call(`_SAMCpack_exec_SAMCoptim`, func, nv, energy, domain, niter, vecpi, t0, xi, stepsize, init, tau_h, tau_star, tau_t0, trunc_init, trunc_r)
 }
@@ -47,5 +55,13 @@ rescale_hori2 <- function(A) {
 
 sample_int <- function(n, k) {
     .Call(`_SAMCpack_sample_int`, n, k)
+}
+
+two_perm_vec <- function(n, k) {
+    .Call(`_SAMCpack_two_perm_vec`, n, k)
+}
+
+find_mingeq <- function(sortedvec, val) {
+    .Call(`_SAMCpack_find_mingeq`, sortedvec, val)
 }
 

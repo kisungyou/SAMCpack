@@ -4,7 +4,7 @@
 #' 
 #' @examples
 #' \donttest{
-#' ##### Two-Dimensional Multimodal sampling
+#' ##### Multidimensional Objective Function 
 #' ## Step 1 : Define negative log-density function as an R function
 #' func_r = function(x){
 #' x1 = x[1]; x2 = x[2];
@@ -41,7 +41,7 @@
 #' plot(opt.x,opt.y,xlab='x',ylab='y',main='optimal samples',xlim=c(-1.2,1.2),ylim=c(-1.2,1.2))
 #' 
 #' #  4-3. evoluation
-#' plot(1:length(select),res$fnval[select],"b")
+#' plot(1:length(select),res$fnval[select],"b",xlab="iteration",ylab="function value")
 #' }
 #' 
 #' @export

@@ -50,7 +50,7 @@ res3 = SAMCttest(x,y,m=500)
 
 ## we also use 1e+5 permutations 
 require(DAAG) # permutation-based t-test
-perm.p = DAAG::twotPermutation(x1=x,x2=y, nsim=1e+5, plotit=FALSE)
+perm.p = DAAG::twotPermutation(x1=x,x2=y, nsim=1e+7, plotit=FALSE)
 
 ## compare with true p-value from 't.test' and permutation test
 printer <- paste(

@@ -34,7 +34,7 @@
 #' 
 #' ## we also use 1e+5 permutations 
 #' require(DAAG) # permutation-based t-test
-#' perm.p = DAAG::twotPermutation(x1=x,x2=y, nsim=1e+5, plotit=FALSE)
+#' perm.p = DAAG::twotPermutation(x1=x,x2=y, nsim=1e+7, plotit=FALSE)
 #' 
 #' ## compare with true p-value from 't.test' and permutation test
 #' printer <- paste(
@@ -186,3 +186,10 @@ ttest.statistic = function(x,y, var.equal=FALSE){
 
 # sam1 = SAMCttest(x,y,sample.ratio=0.075,niter=myiter)
 # sam2 = fastPerm::SAMC(x,y,testStat=diffMeanStudent,B=myiter)
+
+
+#' x = rnorm(100, 0, 1) # mean = 0, sd = 1
+#' y = rnorm(100, 1, 1) # mean = 1, sd = 1
+#' 
+#' SAMCttest(x,y,niter=10000,m=100)$p.val
+#' SAMCttest.cpp(x,y,niter=10000,m=100)$p.val

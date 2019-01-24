@@ -241,3 +241,35 @@ arma::uvec sample_int(int n, int k) {
   }
   return(output);
 }
+
+// [[Rcpp::export]]
+Rcpp::List two_perm_vec(int n, int k){
+  Rcpp::IntegerVector pool = Rcpp::seq(0, n-1);
+  std::random_shuffle(pool.begin(), pool.end());
+  
+  arma::uvec vec1(k,fill::zeros);
+  for (int i=0;i<k;i++){
+    vec1(i) = pool[i];
+  }
+  arma::uvec vec2(n-k,fill::zeros);
+  for (int i=k;i<n;i++){
+    vec2(i-k) = pool[i];
+  }
+  
+  Rcpp::List output;
+  output["vec1"] = vec1;
+  output["vec2"] = vec2;
+  return(output);
+}
+
+// [[Rcpp::export]]
+int find_mingeq(arma::vec sortedvec, double val){
+  int id = 0;
+  for (int i=0;i<sortedvec.n_elem;i++){
+    if (val>=sortedvec(i)){
+      id += 1;
+    }
+  }
+  id = id - 1;
+  return(id);
+}
