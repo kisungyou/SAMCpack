@@ -4,8 +4,15 @@
 \alias{SAMCrsa}
 \title{A Resampling-based Stochastic Approximation Method for Analysis of Large Geostatitical data}
 \usage{
-SAMCrsa(coords, y, X = NULL, nsubset = max(ceiling(length(y)/5), 10),
-  stepscale = 200, niter = 2500, warm = 100)
+SAMCrsa(
+  coords,
+  y,
+  X = NULL,
+  nsubset = max(ceiling(length(y)/5), 10),
+  stepscale = 200,
+  niter = 2500,
+  warm = 100
+)
 }
 \arguments{
 \item{coords}{an \eqn{(n\times 2)} matrix. 2D location coordinates.}

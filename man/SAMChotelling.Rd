@@ -4,8 +4,7 @@
 \alias{SAMChotelling}
 \title{Two-sample Hotelling's T-squared test with Resampling-based SAMC}
 \usage{
-SAMChotelling(x, y, niter = 1e+05, m = 300, t0 = 1000,
-  sample.ratio = 0.05)
+SAMChotelling(x, y, niter = 1e+05, m = 300, t0 = 1000, sample.ratio = 0.05)
 }
 \arguments{
 \item{x}{matrix of \emph{1st} sample.}
@@ -51,15 +50,15 @@ hot.perm = Hotelling::hotelling.test(x,y,perm=TRUE,B=1e+5)
 
 ## compare with true p-value from 't.test' and permutation test
 printer <- paste(
-  "=========================================\\n",
-  "      Compare Different p-values\\n",
-  "=========================================\\n",
+  "=========================================\n",
+  "      Compare Different p-values\n",
+  "=========================================\n",
   "1. Hotelling     : ",hot.asym$pval,
-  "\\n2. SAMCttest",
-  "\\n      2-1. m=100 : ",res1$p.val,
-  "\\n      2-2. m=300 : ",res2$p.val,
-  "\\n      2-3. m=500 : ",res3$p.val,
-  "\\n3. Permutation   : ",hot.perm$pval, sep="")
+  "\n2. SAMCttest",
+  "\n      2-1. m=100 : ",res1$p.val,
+  "\n      2-2. m=300 : ",res2$p.val,
+  "\n      2-3. m=500 : ",res3$p.val,
+  "\n3. Permutation   : ",hot.perm$pval, sep="")
 writeLines(printer)
 
 ## visualize visiting frequency
