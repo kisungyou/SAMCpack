@@ -1,33 +1,35 @@
 ---
-title: "Fast Computation with XPtr"
+title: "Faster Computation with XPtr"
 author: "Kisung You"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_document
-bibliography: bibSAMC.bib
+output:
+  pdf_document:
+    fig_caption: true
 vignette: >
-  %\VignetteIndexEntry{Fast Computation with XPtr}       
+  %\VignetteIndexEntry{Faster Computation with XPtr}
   %\VignetteEngine{knitr::rmarkdown}
-  \usepackage[utf8]{inputenc}
+  %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
+```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  cache=TRUE, autodep=TRUE, cache.comments=FALSE,
   comment = "#>"
 )
 ```
 
-The function `SAMC` helps users to build a SAMC sampler easily. However, the main part of our implementation requires numerous evaluations of an energy function at each iteration, which becomes a critical bottleneck in computational aspect. `SAMCPLUS` exploits a generic framework for passing user-provided C++ functions to our backend. We will use two-dimensional multimodal example [@liang2010advanced] to introduce details on how to boost your computation using XPtr.
+The function `SAMC` helps users to build a SAMC sampler easily. However, the main part of our implementation requires numerous evaluations of an energy function at each iteration, which becomes a critical bottleneck in computational aspect. `SAMCPLUS` exploits a generic framework for passing user-provided C++ functions to our backend. We will use two-dimensional multimodal example to introduce details on how to boost your computation using XPtr.
 
 ## Basic Example
 The problem is to sample from a multimodal distribution $f(x) \propto \exp\{-H(x)\}$, where
-\[
-\begin{eqnarray}
+
+$$
+\begin{aligned}
 H(x) = &-\{x_1 \sin(20x_2) + x_2 \sin(20x_1)\}^2 \cosh\{\sin(10x_1)x_1\} \\
 &- \{x_1 \cos(10x_2) - x_2 \sin(10x_1)\}^2 \cosh\{\cos(20x_1)x_1\}
-\end{eqnarray}
-\]
+\end{aligned}
+$$
+
 with domain $(x_1,x_2) \in [-1.1,1.1]^2$. 
 Before we start in detail, let's define an `options` list containing other parameters for our problem.
 ```{r}
@@ -74,7 +76,7 @@ res1 = SAMC(2,func_r,options=myoption)       # use R function
 res2 = SAMCPLUS(2,func_ptr,options=myoption) # use C++ function
 ```
 Then, we can see that these two results are compatible, 
-```{r echo=FALSE}
+```{r fig.align="center", echo=FALSE}
 select = seq(from=101,to=myoption$niter,by=100) # 100 burn-in, 1/100 thinning 
 par(mfrow=c(1,2))
 plot(res1$samples[select,1], res1$samples[select,2],xlab='x',ylab='y',main='R function samples')
@@ -95,7 +97,7 @@ execution = microbenchmark(
 )
 ```
 and the boxplot below shows a large gap between these two methods.
-```{r, echo=FALSE}
+```{r fig.align="center", echo=FALSE}
 boxplot(execution, xlab="")
 ```
 
@@ -134,21 +136,24 @@ double val2 = (-std::pow((x1*cos(par1*x2)-x2*sin(par1*x1)),2))*cosh(cos(par2*x2)
 return Rcpp::wrap(val1+val2);
 }"
 ```
-Second, let's assume we have a matrix-valued data,
-\[
-data\_mat = \begin{pmatrix}
+Second, let's assume we have a matrix-valued data, say `data_mat` is
+$$
+\begin{pmatrix}
 20 & 20 & 10 \\
 10 & 10 & 20
 \end{pmatrix}
-\]
+$$
+
 whose elements are corresponding to the numeric values in a cost function. As before,
 ```{r}
 data_mat = matrix(c(20,10,20,10,10,20),nrow=2) 
 cppscript_mat = "SEXP funcH_mat(arma::vec x, arma::mat data){
 double x1 = x(0);
 double x2 = x(1);
-double val1 = (-std::pow((x1*sin(data(0,0)*x2)+x2*sin(data(0,1)*x1)),2))*cosh(sin(data(0,2)*x1)*x1);
-double val2 = (-std::pow((x1*cos(data(1,0)*x2)-x2*sin(data(1,1)*x1)),2))*cosh(cos(data(1,2)*x2)*x2);
+double val1 = (-std::pow((x1*sin(data(0,0)*x2)
+              +x2*sin(data(0,1)*x1)),2))*cosh(sin(data(0,2)*x1)*x1);
+double val2 = (-std::pow((x1*cos(data(1,0)*x2)
+              -x2*sin(data(1,1)*x1)),2))*cosh(cos(data(1,2)*x2)*x2);
 return Rcpp::wrap(val1+val2);
 }"
 ```
@@ -163,7 +168,7 @@ res3 = SAMCPLUS(2,func_ptrvec,options=myoption,data=data_vec) # vector data
 res4 = SAMCPLUS(2,func_ptrmat,options=myoption,data=data_mat) # matrix data
 ```
 and still we can check that the results are compatible.
-```{r echo=FALSE}
+```{r fig.align="center", echo=FALSE}
 select = seq(from=101,to=myoption$niter,by=100) # 100 burn-in, 1/100 thinning 
 par(mfrow=c(1,2))
 plot(res3$samples[select,1], res3$samples[select,2],xlab='x',ylab='y',main='arma::vec data')
@@ -187,8 +192,10 @@ double x2 = x(1);
 NumericVector lefty = as<NumericVector>(datalist[0]);
 NumericMatrix right = as<NumericMatrix>(datalist[1]);
 
-double val1 = (-std::pow((x1*sin(lefty[0]*x2)+x2*sin(right(0,0)*x1)),2))*cosh(sin(right(0,1)*x1)*x1);
-double val2 = (-std::pow((x1*cos(lefty[1]*x2)-x2*sin(right(1,0)*x1)),2))*cosh(cos(right(1,1)*x2)*x2);
+double val1 = (-std::pow((x1*sin(lefty[0]*x2)
+              +x2*sin(right(0,0)*x1)),2))*cosh(sin(right(0,1)*x1)*x1);
+double val2 = (-std::pow((x1*cos(lefty[1]*x2)
+               -x2*sin(right(1,0)*x1)),2))*cosh(cos(right(1,1)*x2)*x2);
 return Rcpp::wrap(val1+val2);
 }"
 ```
@@ -197,7 +204,7 @@ func_ptrlist = RcppXPtrUtils::cppXPtr(cppscript_list,depends="RcppArmadillo") # 
 res5 = SAMCPLUS(2,func_ptrlist,options=myoption,data=data_list)
 ```
 If we compile as before and run it, we can check the following results,
-```{r echo=FALSE}
+```{r fig.align="center", echo=FALSE}
  select = seq(from=101,to=myoption$niter,by=100) # 100 burn-in, 1/100 thinning 
  par(mfrow=c(1,2))
  plot(res5$samples[select,1], res5$samples[select,2],xlab='x',ylab='y',main='with List Data')
@@ -231,7 +238,7 @@ func_ptrsexp = cppXPtr(cppscript_sexp,depends="RcppArmadillo")
 res6 = SAMCPLUS(2,func_ptrsexp,options=myoption,data=data_sexp)
 ```
 and the visual inspection also guarantees that it worked well.
-```{r echo=FALSE}
+```{r fig.align="center", echo=FALSE}
  select = seq(from=101,to=myoption$niter,by=100) # 100 burn-in, 1/100 thinning 
  par(mfrow=c(1,2))
  plot(res6$samples[select,1], res6$samples[select,2],xlab='x',ylab='y',main='with SEXP data')
@@ -239,6 +246,3 @@ and the visual inspection also guarantees that it worked well.
          main="visiting frequency by energy partition",
          names.arg=myoption$partition[-1], xlab="energy")
 ```
-
-
-## References
