@@ -62,10 +62,12 @@ printer <- paste(
 writeLines(printer)
 
 ## visualize visiting frequency
+opar <- par(no.readonly=TRUE)
 par(mfrow=c(1,3))
 barplot(res1$frequency/1e+5, main=paste("max.error=",res1$max.error,sep=""))
 barplot(res2$frequency/1e+5, main=paste("max.error=",res2$max.error,sep=""))
 barplot(res3$frequency/1e+5, main=paste("max.error=",res3$max.error,sep=""))
+par(opar)
 }
 
 }

@@ -1,15 +1,17 @@
 #ifndef _SAMCpack_CPP_AUXILIARY_H
 #define _SAMCpack_CPP_AUXILIARY_H
 
-#define ARMA_NO_DEBUG
 #include <RcppArmadillo.h>
 
+#define ARMA_NO_DEBUG
+
 // [[Rcpp::depends(RcppArmadillo)]]
+
 using namespace Rcpp;
 using namespace arma;
 
 // Auxiliary 1 : Sampling from random-walk proposal
-arma::vec sampling_rw(arma::vec xold, arma::mat domain, const double stepsize);
+arma::vec sampling_rw(arma::vec xold, arma::mat domain, double stepsize);
 arma::vec sampling_rwvec(arma::vec xold, arma::mat domain, arma::vec stepsize);
 // Auxiliary 2 : find a suitable location for energy vector
 int find_location(double x, arma::vec y);

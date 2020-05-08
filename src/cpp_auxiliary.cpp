@@ -2,17 +2,19 @@
 #include "cpp_auxiliary.h"
 
 // [[Rcpp::depends(RcppArmadillo)]]
+
 using namespace Rcpp;
 using namespace arma;
 
 // 1. Sampling from random-walk proposal
-arma::vec sampling_rw(arma::vec xold, arma::mat domain, const double stepsize){
+arma::vec sampling_rw(arma::vec xold, arma::mat domain, double stepsize){
   // 1-1. checker
   const int n = xold.n_elem;
   arma::vec xnew(n,fill::zeros);
+  arma::vec xadd(n,fill::randn);
   
   // 1-2. apply random walk
-  xnew = xold + stepsize*arma::vec(n,fill::randn);
+  xnew = xold + stepsize*xadd;
   if ((all(xnew<=domain.col(1)))&&(all(domain.col(0)<=xnew))){
     return(xnew);
   } else{
@@ -158,7 +160,7 @@ arma::mat rescale_hori2(arma::mat A){
 
 // Auxiliary 6 : get grid vector, whow!
 arma::vec get_gridvec(const double pstart, const double pend, const int N){
-  arma::vec output = linspace<vec>(pstart,pend,N);
+  arma::vec output = arma::linspace<vec>(pstart,pend,N);
   return(output);
 }
 
@@ -208,14 +210,14 @@ arma::mat evalcsamc_ks2(arma::vec vec1, arma::vec vec2, arma::mat ysamples, arma
       
       for (int it=0;it<M;it++){
         x = tmpz-ysamples.col(it);
-        if (norm(x)<0.01){
-          zeta(i,j) += std::exp(static_cast<float>(-dot(x,solve(H,x))/2))/std::sqrt(static_cast<float>(detH));
+        if (arma::norm(x)<0.01){
+          zeta(i,j) += std::exp(static_cast<float>(-arma::dot(x,solve(H,x))/2))/std::sqrt(static_cast<float>(detH));
         }
       }
     }
   }
   // 8-3. normalization
-  double allsum = accu(zeta);
+  double allsum = arma::accu(zeta);
   zeta = zeta/allsum;
   // 8-4. return output
   return(zeta);
@@ -232,28 +234,30 @@ arma::vec init_theta(int m){
 
 // [[Rcpp::export]]
 arma::uvec sample_int(int n, int k) {
-  Rcpp::IntegerVector pool = Rcpp::seq(0, n-1);
-  std::random_shuffle(pool.begin(), pool.end());
-  
-  arma::uvec output(k,fill::zeros);
-  for (int i=0;i<k;i++){
-    output(i) = pool[i];
-  }
+  arma::uvec output = arma::randperm(n,k);
+  // Rcpp::IntegerVector pool = Rcpp::seq(0, n-1);
+  // std::random_shuffle(pool.begin(), pool.end());
+  // 
+  // arma::uvec output(k,fill::zeros);
+  // for (int i=0;i<k;i++){
+  //   output(i) = pool[i];
+  // }
   return(output);
 }
 
 // [[Rcpp::export]]
 Rcpp::List two_perm_vec(int n, int k){
-  Rcpp::IntegerVector pool = Rcpp::seq(0, n-1);
-  std::random_shuffle(pool.begin(), pool.end());
+  arma::uvec pool = arma::randperm(n);
+  // Rcpp::IntegerVector pool = Rcpp::seq(0, n-1);
+  // std::random_shuffle(pool.begin(), pool.end());
   
   arma::uvec vec1(k,fill::zeros);
   for (int i=0;i<k;i++){
-    vec1(i) = pool[i];
+    vec1(i) = pool(i);
   }
   arma::uvec vec2(n-k,fill::zeros);
   for (int i=k;i<n;i++){
-    vec2(i-k) = pool[i];
+    vec2(i-k) = pool(i);
   }
   
   Rcpp::List output;

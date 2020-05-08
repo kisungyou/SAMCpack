@@ -4,14 +4,16 @@
 \name{gdata}
 \alias{gdata}
 \title{Dataset for SAMCrsa}
-\format{A sample dataset with 1000 observations. It's save as an R's native \code{list}, and see the table for description of variables in the \code{gdata} list,
+\format{
+A sample dataset with 1000 observations. It's save as an R's native \code{list}, and see the table for description of variables in the \code{gdata} list,
 \tabular{lll}{
 VARIABLE \tab SIZE \tab DESCRIPTION \cr
 \code{coords} \tab \eqn{(1000\times 2)} matrix \tab 2D location for each observation \cr
 \code{y}      \tab length-\eqn{1000} vector \tab response value \cr
 \code{X}      \tab length-\eqn{1000} vcetor \tab covariate
 }
-This is the default example data for \code{\link{SAMCrsa}}.}
+This is the default example data for \code{\link{SAMCrsa}}.
+}
 \usage{
 data(gdata)
 }

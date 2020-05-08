@@ -10,7 +10,7 @@
 #' @import RcppXPtrUtils
 #' @import Rdpack
 #' @importFrom stats runif var cov rnorm t.test
-#' @importFrom utils packageVersion
+#' @importFrom utils packageVersion tail
 #' @importFrom Rcpp evalCpp
 #' @useDynLib SAMCpack, .registration=TRUE
 NULL

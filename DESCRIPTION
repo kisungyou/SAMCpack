@@ -13,7 +13,6 @@ LazyData: true
 Depends: R (>= 3.0.0)
 Imports: Rcpp, RcppXPtrUtils, utils, Rdpack, stats
 LinkingTo: Rcpp, RcppArmadillo
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 Suggests: knitr, rmarkdown, microbenchmark, pander, geoR, RandomFields, DAAG, Hotelling
-VignetteBuilder: knitr
 RdMacros: Rdpack

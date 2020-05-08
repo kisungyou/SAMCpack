@@ -50,14 +50,14 @@ x = rnorm(100, 0, 1) # mean = 0, sd = 1
 y = rnorm(100, 1, 1) # mean = 1, sd = 1
 
 ## run SAMCttest with different partition scales
-#    default iteration of 1e+4 subsamples are used.
+#    default iteration of 1e+5 subsamples are used.
 res1 = SAMCttest(x,y,m=100)
 res2 = SAMCttest(x,y,m=300)
 res3 = SAMCttest(x,y,m=500)
 
 ## we also use 1e+5 permutations 
 require(DAAG) # permutation-based t-test
-perm.p = DAAG::twotPermutation(x1=x,x2=y, nsim=1e+7, plotit=FALSE)
+perm.p = DAAG::twotPermutation(x1=x,x2=y, nsim=1e+5, plotit=FALSE)
 
 ## compare with true p-value from 't.test' and permutation test
 printer <- paste(
@@ -73,10 +73,12 @@ printer <- paste(
 writeLines(printer)
 
 ## visualize visiting frequency
+opar <- par(no.readonly=TRUE)
 par(mfrow=c(1,3))
 barplot(res1$frequency/1e+5, main=paste("max.error=",res1$max.error,sep=""))
 barplot(res2$frequency/1e+5, main=paste("max.error=",res2$max.error,sep=""))
 barplot(res3$frequency/1e+5, main=paste("max.error=",res3$max.error,sep=""))
+par(opar)
 }
 
 }
